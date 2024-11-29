@@ -13,7 +13,7 @@ public class Game implements Runnable {
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
     private final Playing playing = Playing.getInstance();
-    private Menu menu = new Menu();
+    private Menu menu = Menu.getInstance();
 
     public Game() {
         gamePanel = new GamePanel(this);
@@ -28,7 +28,6 @@ public class Game implements Runnable {
     }
 
     public void update(){
-        System.out.println(Gamestate.state);
         switch (Gamestate.state){
             case MENU:
                 menu.update();

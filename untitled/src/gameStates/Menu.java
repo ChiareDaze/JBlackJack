@@ -11,7 +11,7 @@ public class Menu extends State implements StateMethods{
 
     private static Menu instance;
 
-    public Menu() {
+    private Menu() {
         super();
     }
 
@@ -30,7 +30,20 @@ public class Menu extends State implements StateMethods{
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.BLACK);
-        g.drawString("MENU", Constants.WIDTH/2, 200);
+
+        String text1 = "MENU";
+        FontMetrics metrics1 = g.getFontMetrics(g.getFont());
+        int x1 = (Constants.WIDTH - metrics1.stringWidth(text1)) / 2;
+        int y1 = 200;
+
+        g.drawString(text1, x1, y1);
+
+        String text2 = "Press Enter to Play";
+        FontMetrics metrics2 = g.getFontMetrics(g.getFont());
+        int x2 = (Constants.WIDTH - metrics2.stringWidth(text2)) / 2;
+        int y2 = 300;
+
+        g.drawString(text2, x2, y2);
     }
 
     @Override
@@ -57,6 +70,7 @@ public class Menu extends State implements StateMethods{
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER){
             Gamestate.state = Gamestate.PLAYING;
+            System.out.println("Playing");
         }
     }
 

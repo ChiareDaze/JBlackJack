@@ -1,17 +1,18 @@
-package controller.inputs;
-
-import main.Game;
-import main.GamePanel;
-
+package controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import gameStates.Gamestate;
+import gameStates.Menu;
+import gameStates.Playing;
+import main.GamePanel;
+
 public class KeyboardInputs implements KeyListener {
 
-    private GamePanel gamePanel;
+    private final main.GamePanel gamePanel;
 
     public KeyboardInputs(GamePanel gamePanel) {
-       this.gamePanel = gamePanel;
+        this.gamePanel = gamePanel;
     }
 
     @Override
@@ -22,10 +23,31 @@ public class KeyboardInputs implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
+        switch (Gamestate.state){
+            case MENU:
+                Menu.getInstance().keyPressed(e);
+                break;
+            case PLAYING:
+                Playing.getInstance().keyPressed(e);
+                break;
+            default:
+                break;
+        }
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        switch (Gamestate.state){
+            case MENU:
+                Menu.getInstance().keyReleased(e);
+                break;
+            case PLAYING:
+                Playing.getInstance().keyReleased(e);
+                break;
+            default:
+                break;
+        }
 
     }
 }

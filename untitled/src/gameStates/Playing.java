@@ -17,7 +17,7 @@ public class Playing extends State implements StateMethods {
     private Playing playing;
 
 
-    public Playing() {
+    private Playing() {
         initClasses();
     }
 
@@ -30,7 +30,6 @@ public class Playing extends State implements StateMethods {
 
     private void initClasses(){
         menu = Menu.getInstance();
-        //playing = Playing.getInstance();
     }
 
     public void update(){

@@ -1,5 +1,6 @@
 package main;
 
+import controller.KeyboardInputs;
 import controller.inputs.*;
 import gameStates.Playing;
 
@@ -12,6 +13,7 @@ import utilz.Constants;
 public class GamePanel extends JPanel {
 
     private MouseInputs mouseInputs;
+    private KeyboardInputs keyboardInputs;
     private Game game;
 
     private JPanel buttonPanel;
@@ -23,12 +25,13 @@ public class GamePanel extends JPanel {
 
         this.game = game;
         mouseInputs = new MouseInputs(this);
+        keyboardInputs = new KeyboardInputs(this);
 
         setBackground(new Color (53,101,77));
         setPanelSize();
         initButtons();
 
-        addKeyListener(new KeyboardInputs(this));
+        addKeyListener(keyboardInputs);
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
 
