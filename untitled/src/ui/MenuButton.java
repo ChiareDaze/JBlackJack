@@ -16,6 +16,7 @@ public class MenuButton {
     private boolean mouseOver, mousePressed;
     private Rectangle bounds;
 
+
     public MenuButton(int xPos, int yPos, int rowIndex, Gamestate state){
         this.xPos = xPos;
         this.yPos = yPos;
@@ -26,6 +27,7 @@ public class MenuButton {
         initBounds();
     }
 
+
     private void initBounds() {
         bounds = new Rectangle(xPos - xOffsetCenter, yPos, B_WIDTH, B_HEIGHT);
     }
@@ -34,7 +36,7 @@ public class MenuButton {
         imgs = new BufferedImage[3];
         BufferedImage temp = Load.ImportImg(Load.MENU_BUTTONS);
         for (int i = 0; i < imgs.length; i++) {
-            temp.getSubimage(i * B_WIDTH, rowIndex * B_HEIGHT, B_WIDTH, B_HEIGHT);
+            imgs[i] = temp.getSubimage(i * B_WIDTH, rowIndex * B_HEIGHT, B_WIDTH, B_HEIGHT);
         }
     }
 

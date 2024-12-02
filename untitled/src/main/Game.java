@@ -49,7 +49,11 @@ public class Game implements Runnable {
                 playing.draw(g);
                 //menu.draw(g);
                 break;
+            case OPTIONS:
+                break;
+            case QUIT:
             default:
+                System.exit(0);
                 break;
         }
     }

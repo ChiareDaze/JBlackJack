@@ -20,9 +20,6 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mouseClicked(MouseEvent e) {
 
         switch (Gamestate.state){
-            case MENU:
-                Menu.getInstance().mouseClicked(e);
-                break;
             case PLAYING:
                 Playing.getInstance().mouseClicked(e);
                 break;
@@ -81,6 +78,17 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
+
+        switch (Gamestate.state){
+            case MENU:
+                Menu.getInstance().mouseMoved(e);
+                break;
+            case PLAYING:
+                Playing.getInstance().mouseMoved(e);
+                break;
+            default:
+                break;
+        }
 
     }
 }

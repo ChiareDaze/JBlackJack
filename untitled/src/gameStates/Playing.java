@@ -14,7 +14,7 @@ public class Playing extends State implements StateMethods {
     private static Playing instance;
     private CardsManager cardsManager = CardsManager.getInstace();
     private Menu menu;
-    private Playing playing;
+   private boolean paused;
 
 
     private Playing() {

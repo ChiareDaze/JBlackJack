@@ -3,16 +3,39 @@ package gameStates;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import main.Game;
+import java.awt.image.BufferedImage;
+
+import ui.MenuButton;
 import utilz.Constants;
 
 
 public class Menu extends State implements StateMethods{
 
     private static Menu instance;
+    private MenuButton[] buttons = new MenuButton[3];
+    private BufferedImage background;
+    private int menuX, menuY, menuHeight, menuWidth;
+
 
     private Menu() {
         super();
+        loadButtons();
+        loadBackground();
+
+    }
+
+    private void loadBackground() {
+        background = utilz.Load.ImportImg(utilz.Load.MENU_BACKGROUND);
+        menuWidth = background.getWidth();
+        menuHeight = background.getHeight();
+        menuX = Constants.WIDTH / 2 - menuWidth / 2;
+        menuY = 100;
+    }
+
+    private void loadButtons() {
+        buttons[0] = new MenuButton(Constants.WIDTH / 2 , 210, 0, Gamestate.PLAYING);
+        buttons[1] = new MenuButton(Constants.WIDTH / 2 , 275, 1, Gamestate.OPTIONS);
+        buttons[2] = new MenuButton(Constants.WIDTH / 2 , 340, 2, Gamestate.QUIT);
     }
 
     public static Menu getInstance(){
@@ -24,26 +47,19 @@ public class Menu extends State implements StateMethods{
 
     @Override
     public void update() {
-
+        for (MenuButton button : buttons) {
+            button.update();
+        }
     }
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
 
-        String text1 = "MENU";
-        FontMetrics metrics1 = g.getFontMetrics(g.getFont());
-        int x1 = (Constants.WIDTH - metrics1.stringWidth(text1)) / 2;
-        int y1 = 200;
+        g.drawImage(background, menuX, menuY, menuWidth, menuHeight, null);
 
-        g.drawString(text1, x1, y1);
-
-        String text2 = "Press Enter to Play";
-        FontMetrics metrics2 = g.getFontMetrics(g.getFont());
-        int x2 = (Constants.WIDTH - metrics2.stringWidth(text2)) / 2;
-        int y2 = 300;
-
-        g.drawString(text2, x2, y2);
+        for (MenuButton button : buttons) {
+            button.draw(g);
+        }
     }
 
     @Override
@@ -53,24 +69,46 @@ public class Menu extends State implements StateMethods{
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        for (MenuButton button : buttons) {
+            if (isIn(e,button)){
+                button.setMousePressed(true);
+                break;
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        for (MenuButton button : buttons) {
+            if (isIn(e,button)){
+                if (button.isMousePressed())
+                    button.applyGameState();
+            }
+        }
+        resetButtons();
+    }
 
+    private void resetButtons() {
+        for (MenuButton button : buttons)
+            button.resetBools();
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        for (MenuButton button : buttons)
+            button.setMouseOver(false);
 
+        for (MenuButton button : buttons)
+            if (isIn(e,button)) {
+                button.setMouseOver(true);
+                break;
+        }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER){
             Gamestate.state = Gamestate.PLAYING;
-            System.out.println("Playing");
         }
     }
 

@@ -6,7 +6,8 @@ import java.io.InputStream;
 
 public class Load {
 
-    public static final String MENU_BUTTONS = "button_atlas.png";
+    public static final String MENU_BUTTONS = "/menuStuff/button_atlas.png";
+    public static final String MENU_BACKGROUND = "/menuStuff/menu_background.png";
 
     public static BufferedImage ImportImg(String path) {
         BufferedImage img = null;

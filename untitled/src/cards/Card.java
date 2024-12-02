@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static utilz.Load.Images.*;
+import static utilz.Load.ImportImg;
 
 public class Card{
     private String value;
