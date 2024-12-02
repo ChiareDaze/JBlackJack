@@ -41,8 +41,8 @@ public class Card{
     }
 
     private void loadAnimations(){
-        backImage = importImg(getBackCardPath());
-        frontImage = importImg(getFrontCardPath(value, type));
+        backImage = ImportImg(GetBackCardPath());
+        frontImage = ImportImg(GetFrontCardPath(value, type));
     }
 
     public boolean isAce(){
