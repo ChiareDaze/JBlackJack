@@ -8,6 +8,9 @@ public class Load {
 
     public static final String MENU_BUTTONS = "/menuStuff/button_atlas.png";
     public static final String MENU_BACKGROUND = "/menuStuff/menu_background.png";
+    public static final String PAUSE_BACKGROUND = "/menuStuff/pause_menu.png";
+    public static final String SOUND_BUTTONS = "/menuStuff/sound_button.png";
+    public static final String URM_BUTTONS = "/menuStuff/urm_buttons.png";
 
     public static BufferedImage ImportImg(String path) {
         BufferedImage img = null;

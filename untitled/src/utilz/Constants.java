@@ -13,4 +13,8 @@ public class Constants {
             public static final int B_HEIGHT= 56;
         }
     }
+
+    public static class PauseButtons{
+        public static final int SOUND_SIZE = 42;
+    }
 }
