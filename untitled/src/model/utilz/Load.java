@@ -1,4 +1,4 @@
-package utilz;
+package model.utilz;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -28,11 +28,11 @@ public class Load {
 
     public static class Images{
         public static String GetFrontCardPath(String value, CardType type){
-            return "/cards/" + value + "-" + type + ".png";
+            return "/cardsImgs/" + value + "-" + type + ".png";
         }
 
         public static String GetBackCardPath(){
-            return "/cards/BACK.png";
+            return "/cardsImgs/BACK.png";
         }
 
         public enum CardType{

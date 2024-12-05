@@ -1,10 +1,10 @@
 package ui;
 
-import utilz.Load;
+import model.utilz.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import static utilz.Constants.URMButtons.*;
+import static model.utilz.Constants.URMButtons.*;
 
 public class UrmButton extends PauseButton{
     
@@ -20,7 +20,7 @@ public class UrmButton extends PauseButton{
     }
 
     private void loadImgs() {
-        BufferedImage temp = utilz.Load.ImportImg(Load.URM_BUTTONS);
+        BufferedImage temp = model.utilz.Load.ImportImg(Load.URM_BUTTONS);
         imgs = new BufferedImage[3];
 
         for (int i = 0; i < imgs.length; i++) {

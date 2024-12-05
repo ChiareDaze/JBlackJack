@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class BlackJack {
 
-    ArrayList<Card> deck; //deck of cards
+    ArrayList<Card> deck; //deck of model.cards
     Random random = new Random(); //shuffle deck
 
     //dealer
@@ -98,7 +98,7 @@ public class BlackJack {
         dealerHand.add(card);
 
         System.out.println("Dealer;");
-        System.out.println("Hidden cards.Card: " + hiddenCard);
+        System.out.println("Hidden model.cards.Card: " + hiddenCard);
         System.out.println("DealerHand" + dealerHand);
         System.out.println("DealerSum: " + dealerSum);
         System.out.println("DealerAceCount: " + dealerAceCount);
@@ -125,7 +125,7 @@ public class BlackJack {
         String[] values = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
         String[] types = {"H","D","C","S"};
 
-        //iterate through all values and types to create a deck of cards
+        //iterate through all values and types to create a deck of model.cards
         for (String value : values) {
             for (String type : types) {
                 deck.add(new Card(value, type));
@@ -162,7 +162,7 @@ public class BlackJack {
 
             try {
                 //draw hidden card
-                Image hiddenCardImage = new ImageIcon(getClass().getResource("cards/BACK.png")).getImage();
+                Image hiddenCardImage = new ImageIcon(getClass().getResource("model.cards/BACK.png")).getImage();
                 if (!stayButton.isEnabled()){
                     hiddenCardImage = new ImageIcon(getClass().getResource(hiddenCard.getImagePath())).getImage();
                 }

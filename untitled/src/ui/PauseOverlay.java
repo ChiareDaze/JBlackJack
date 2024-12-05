@@ -1,14 +1,14 @@
 package ui;
 
 import gameStates.Gamestate;
-import gameStates.Playing;
+import gameStates.PlayingModel;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import static utilz.Constants.URMButtons.*;
+import static model.utilz.Constants.URMButtons.*;
 
-import static utilz.Constants.PauseButtons.SOUND_SIZE;
+import static model.utilz.Constants.PauseButtons.SOUND_SIZE;
 
 public class PauseOverlay {
 
@@ -16,11 +16,11 @@ public class PauseOverlay {
     private int bgX, bgY, bgW, bgH;
     private SoundButton musicButton, sfxButton;
     private UrmButton menuB, replyB, unpausedB;
-    private Playing playing;
+    private PlayingModel playingModel;
 
-    public PauseOverlay(Playing playing){
+    public PauseOverlay(PlayingModel playingModel){
 
-        this.playing = playing;
+        this.playingModel = playingModel;
         loadBackground();
         createSoundButtons();
         createUrmButtons();
@@ -47,10 +47,10 @@ public class PauseOverlay {
     }
 
     private void loadBackground() {
-        background = utilz.Load.ImportImg(utilz.Load.PAUSE_BACKGROUND);
+        background = model.utilz.Load.ImportImg(model.utilz.Load.PAUSE_BACKGROUND);
         bgW = background.getWidth();
         bgH = background.getHeight();
-        bgX = utilz.Constants.WIDTH / 2 - bgW / 2;
+        bgX = model.utilz.Constants.WIDTH / 2 - bgW / 2;
         bgY = 100;
     }
 
@@ -121,7 +121,7 @@ public class PauseOverlay {
         else if (isIn(e, menuB)){
             if (menuB.isMousePressed()){
                 Gamestate.state = Gamestate.MENU;
-                playing.unpauseGame();
+                playingModel.unpauseGame();
             }
         }
 
@@ -134,7 +134,7 @@ public class PauseOverlay {
 
         else if (isIn(e, unpausedB)){
             if (unpausedB.isMousePressed()){
-                playing.unpauseGame();
+                playingModel.unpauseGame();
             }
         }
 

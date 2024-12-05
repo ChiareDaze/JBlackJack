@@ -2,13 +2,13 @@ package main;
 
 import controller.KeyboardInputs;
 import controller.inputs.*;
-import gameStates.Playing;
+import gameStates.PlayingModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import utilz.Constants;
+import model.utilz.Constants;
 
 public class GamePanel extends JPanel {
 
@@ -19,7 +19,7 @@ public class GamePanel extends JPanel {
     private JPanel buttonPanel;
     private JButton hitButton, stayButton;
 
-    private Playing playing = Playing.getInstance();
+    private PlayingModel playingModel = PlayingModel.getInstance();
 
     public GamePanel(Game game) {
 
@@ -69,7 +69,7 @@ public class GamePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                playing.hitButtonPressed(GamePanel.this);
+                playingModel.hitButtonPressed(GamePanel.this);
                 repaint(); //calls paintComponent
             }
         });

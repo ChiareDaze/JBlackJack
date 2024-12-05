@@ -1,10 +1,8 @@
 package ui;
 
-import gameStates.Gamestate;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import static utilz.Constants.PauseButtons.*;
+import static model.utilz.Constants.PauseButtons.*;
 
 public class SoundButton extends PauseButton {
 
@@ -20,7 +18,7 @@ public class SoundButton extends PauseButton {
     }
 
     private void loadSoundImgs() {
-        BufferedImage temp = utilz.Load.ImportImg(utilz.Load.SOUND_BUTTONS);
+        BufferedImage temp = model.utilz.Load.ImportImg(model.utilz.Load.SOUND_BUTTONS);
         soundImgs = new BufferedImage[2][3];
         for (int j = 0; j < soundImgs.length; j++)
             for (int i = 0; i < soundImgs[j].length; i++) {

@@ -2,7 +2,9 @@ package main;
 
 import gameStates.Gamestate;
 import gameStates.Menu;
-import gameStates.Playing;
+import gameStates.PlayingModel;
+import view.gamestates.PlayingView;
+
 import java.awt.*;
 
 public class Game implements Runnable {
@@ -12,7 +14,8 @@ public class Game implements Runnable {
     private Thread thread;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
-    private final Playing playing = Playing.getInstance();
+    private final PlayingModel playingModel = PlayingModel.getInstance();
+    private final PlayingView playingView = PlayingView.getInstance();
     private Menu menu = Menu.getInstance();
 
     public Game() {
@@ -33,7 +36,7 @@ public class Game implements Runnable {
                 menu.update();
                 break;
             case PLAYING:
-                playing.update();
+                playingModel.update();
                 break;
             default:
                 break;
@@ -46,7 +49,7 @@ public class Game implements Runnable {
                 menu.draw(g);
                 break;
             case PLAYING:
-                playing.draw(g);
+                playingView.draw(g);
                 //menu.draw(g);
                 break;
             case OPTIONS:

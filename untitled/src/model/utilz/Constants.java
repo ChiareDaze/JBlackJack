@@ -1,6 +1,4 @@
-package utilz;
-
-import main.Game;
+package model.utilz;
 
 public class Constants {
 

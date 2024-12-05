@@ -1,13 +1,13 @@
 package entities;
 
-import cards.Card;
+import model.cards.CardModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
 
-        private List<Card> hand;
+        private List<CardModel> hand;
         private String name;
 
         public Player(String name) {
@@ -16,8 +16,8 @@ public class Player {
         }
 
 
-        public void addCard(Card card) {
-            hand.add(card);
+        public void addCard(CardModel cardModel) {
+            hand.add(cardModel);
         }
 
         /*public int getHandValue() {
@@ -26,7 +26,7 @@ public class Player {
                     .sum();
         }*/
 
-        public List<Card> getHand() {
+        public List<CardModel> getHand() {
             return hand;
         }
 

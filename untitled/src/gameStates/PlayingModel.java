@@ -1,31 +1,30 @@
 package gameStates;
 
-import cards.CardsManager;
+import model.cards.CardsManagerModel;
 import main.Game;
 import main.GamePanel;
 import ui.PauseOverlay;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class Playing extends State implements StateMethods {
+public class PlayingModel extends State implements StateMethods {
 
     protected static Game game;
-    private static Playing instance;
-    private CardsManager cardsManager = CardsManager.getInstace();
+    private static PlayingModel instance;
+    private CardsManagerModel cardsManagerModel = CardsManagerModel.getInstace();
     private Menu menu;
     private PauseOverlay pauseOverlay;
     private boolean paused = false;
 
 
-    private Playing() {
+    private PlayingModel() {
         initClasses();
     }
 
-    public static Playing getInstance(){
+    public static PlayingModel getInstance(){
         if(instance == null){
-            instance = new Playing();
+            instance = new PlayingModel();
         }
         return instance;
     }
@@ -37,7 +36,7 @@ public class Playing extends State implements StateMethods {
 
     public void update(){
         if (!paused){
-            cardsManager.update();
+            cardsManagerModel.update();
             pauseOverlay.update();
         }
 
@@ -45,13 +44,6 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.update();
         }
 
-    }
-
-    public void draw(Graphics g){
-        cardsManager.draw(g);
-
-        if (paused)
-            pauseOverlay.draw(g);
     }
 
     @Override
@@ -96,15 +88,28 @@ public class Playing extends State implements StateMethods {
 
 
     public void hitButtonPressed(GamePanel gamePanel){
-       cardsManager.hitButtonPressed(gamePanel);
+       cardsManagerModel.hitButtonPressed(gamePanel);
     }
 
     public void stayButtonPressed(){
-        cardsManager.stayButtonPressed();
+        cardsManagerModel.stayButtonPressed();
     }
 
     public void unpauseGame(){
         paused = false;
     }
 
+    public boolean getPause(){
+        return paused;
+    }
+
+    //todo: remove when mvc is implemented
+
+    public CardsManagerModel getCardsManager() {
+        return cardsManagerModel;
+    }
+
+    public PauseOverlay getPauseOverlay() {
+        return pauseOverlay;
+    }
 }

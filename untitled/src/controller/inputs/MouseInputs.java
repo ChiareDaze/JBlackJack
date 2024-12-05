@@ -2,7 +2,7 @@ package controller.inputs;
 
 import gameStates.Gamestate;
 import gameStates.Menu;
-import gameStates.Playing;
+import gameStates.PlayingModel;
 import main.GamePanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,7 +21,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
         switch (Gamestate.state){
             case PLAYING:
-                Playing.getInstance().mouseClicked(e);
+                PlayingModel.getInstance().mouseClicked(e);
                 break;
             default:
                 break;
@@ -37,7 +37,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 Menu.getInstance().mousePressed(e);
                 break;
             case PLAYING:
-                Playing.getInstance().mousePressed(e);
+                PlayingModel.getInstance().mousePressed(e);
                 break;
             default:
                 break;
@@ -53,7 +53,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 Menu.getInstance().mouseReleased(e);
                 break;
             case PLAYING:
-                Playing.getInstance().mouseReleased(e);
+                PlayingModel.getInstance().mouseReleased(e);
                 break;
             default:
                 break;
@@ -84,7 +84,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 Menu.getInstance().mouseMoved(e);
                 break;
             case PLAYING:
-                Playing.getInstance().mouseMoved(e);
+                PlayingModel.getInstance().mouseMoved(e);
                 break;
             default:
                 break;

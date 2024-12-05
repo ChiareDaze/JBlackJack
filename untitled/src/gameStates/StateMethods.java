@@ -9,8 +9,6 @@ public interface StateMethods {
 
     public void update();
 
-    public void draw(Graphics g);
-
     public void mouseClicked(MouseEvent e);
 
     public void mousePressed(MouseEvent e);

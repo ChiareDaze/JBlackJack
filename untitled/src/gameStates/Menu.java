@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import ui.MenuButton;
-import utilz.Constants;
+import model.utilz.Constants;
 
 
 public class Menu extends State implements StateMethods{
@@ -25,7 +25,7 @@ public class Menu extends State implements StateMethods{
     }
 
     private void loadBackground() {
-        background = utilz.Load.ImportImg(utilz.Load.MENU_BACKGROUND);
+        background = model.utilz.Load.ImportImg(model.utilz.Load.MENU_BACKGROUND);
         menuWidth = background.getWidth();
         menuHeight = background.getHeight();
         menuX = Constants.WIDTH / 2 - menuWidth / 2;
@@ -52,7 +52,6 @@ public class Menu extends State implements StateMethods{
         }
     }
 
-    @Override
     public void draw(Graphics g) {
 
         g.drawImage(background, menuX, menuY, menuWidth, menuHeight, null);
