@@ -1,9 +1,11 @@
 package main;
 
+import controller.PlayingController;
 import gameStates.Gamestate;
 import gameStates.Menu;
 import gameStates.PlayingModel;
 import view.gamestates.PlayingView;
+import view.ui.PauseOverlay;
 
 import java.awt.*;
 
@@ -14,8 +16,11 @@ public class Game implements Runnable {
     private Thread thread;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
+
     private final PlayingModel playingModel = PlayingModel.getInstance();
-    private final PlayingView playingView = PlayingView.getInstance();
+    private final PauseOverlay pauseOverlay = new PauseOverlay(playingModel);
+    private final PlayingView playingView = PlayingView.getInstance(pauseOverlay);
+    private PlayingController playingController = PlayingController.getInstance(pauseOverlay);
     private Menu menu = Menu.getInstance();
 
     public Game() {
@@ -37,6 +42,7 @@ public class Game implements Runnable {
                 break;
             case PLAYING:
                 playingModel.update();
+                PlayingView.getInstance().update();
                 break;
             default:
                 break;

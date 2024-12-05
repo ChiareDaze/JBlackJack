@@ -28,7 +28,7 @@ public class KeyboardInputs implements KeyListener {
                 Menu.getInstance().keyPressed(e);
                 break;
             case PLAYING:
-                PlayingModel.getInstance().keyPressed(e);
+                PlayingController.getInstance().keyPressed(e);
                 break;
             default:
                 break;
@@ -43,7 +43,7 @@ public class KeyboardInputs implements KeyListener {
                 Menu.getInstance().keyReleased(e);
                 break;
             case PLAYING:
-                PlayingModel.getInstance().keyReleased(e);
+                PlayingController.getInstance().keyReleased(e);
                 break;
             default:
                 break;

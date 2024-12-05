@@ -1,4 +1,4 @@
-package ui;
+package view.ui;
 
 import gameStates.Gamestate;
 import gameStates.PlayingModel;
@@ -78,9 +78,17 @@ public class PauseOverlay {
         unpausedB.draw(g);
     }
 
+    private boolean isIn(MouseEvent e, PauseButton button){
+        return (button.getBounds().contains(e.getX(), e.getY()));
+    }
+
+    //todo: controller
+
     public void mouseDragged(MouseEvent e) {
 
     }
+
+    //todo: controller
 
     public void mousePressed(MouseEvent e) {
         if (isIn(e, musicButton)){
@@ -103,6 +111,8 @@ public class PauseOverlay {
             unpausedB.setMousePressed(true);
         }
     }
+
+    //todo: controller
 
     public void mouseReleased(MouseEvent e) {
 
@@ -146,6 +156,8 @@ public class PauseOverlay {
 
     }
 
+    //todo: controller
+
     public void mouseMoved(MouseEvent e) {
         musicButton.setMouseOver(false);
         sfxButton.setMouseOver(false);
@@ -172,9 +184,5 @@ public class PauseOverlay {
         else if (isIn(e, unpausedB)){
             unpausedB.setMouseOver(true);
         }
-    }
-
-    private boolean isIn(MouseEvent e, PauseButton button){
-        return (button.getBounds().contains(e.getX(), e.getY()));
     }
 }

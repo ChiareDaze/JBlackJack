@@ -28,6 +28,7 @@ public class CardManagerView {
     public void syncView(){
         playerHand.clear();
         dealerHand.clear();
+
         for (CardModel cardModel : cardsManagerModel.getPlayerHand())
             playerHand.add(new CardView(cardModel));
 

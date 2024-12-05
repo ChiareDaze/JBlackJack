@@ -1,5 +1,6 @@
 package controller.inputs;
 
+import controller.PlayingController;
 import gameStates.Gamestate;
 import gameStates.Menu;
 import gameStates.PlayingModel;
@@ -21,7 +22,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
         switch (Gamestate.state){
             case PLAYING:
-                PlayingModel.getInstance().mouseClicked(e);
+                PlayingController.getInstance().mouseClicked(e);
                 break;
             default:
                 break;
@@ -37,7 +38,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 Menu.getInstance().mousePressed(e);
                 break;
             case PLAYING:
-                PlayingModel.getInstance().mousePressed(e);
+                PlayingController.getInstance().mousePressed(e);
                 break;
             default:
                 break;
@@ -53,7 +54,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 Menu.getInstance().mouseReleased(e);
                 break;
             case PLAYING:
-                PlayingModel.getInstance().mouseReleased(e);
+                PlayingController.getInstance().mouseReleased(e);
                 break;
             default:
                 break;
@@ -84,7 +85,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 Menu.getInstance().mouseMoved(e);
                 break;
             case PLAYING:
-                PlayingModel.getInstance().mouseMoved(e);
+                PlayingController.getInstance().mouseMoved(e);
                 break;
             default:
                 break;

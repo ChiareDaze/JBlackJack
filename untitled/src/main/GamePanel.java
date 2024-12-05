@@ -1,6 +1,7 @@
 package main;
 
 import controller.KeyboardInputs;
+import controller.PlayingController;
 import controller.inputs.*;
 import gameStates.PlayingModel;
 
@@ -18,8 +19,6 @@ public class GamePanel extends JPanel {
 
     private JPanel buttonPanel;
     private JButton hitButton, stayButton;
-
-    private PlayingModel playingModel = PlayingModel.getInstance();
 
     public GamePanel(Game game) {
 
@@ -69,7 +68,7 @@ public class GamePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                playingModel.hitButtonPressed(GamePanel.this);
+                PlayingController.getInstance().hitButtonPressed(GamePanel.this);
                 repaint(); //calls paintComponent
             }
         });

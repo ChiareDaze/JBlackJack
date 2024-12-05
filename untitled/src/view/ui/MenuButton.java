@@ -1,4 +1,4 @@
-package ui;
+package view.ui;
 
 import gameStates.Gamestate;
 import model.utilz.Load;

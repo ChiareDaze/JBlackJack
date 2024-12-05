@@ -5,11 +5,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import ui.MenuButton;
+import view.ui.MenuButton;
 import model.utilz.Constants;
 
 
-public class Menu extends State implements StateMethods{
+public class Menu extends State{
 
     private static Menu instance;
     private MenuButton[] buttons = new MenuButton[3];
@@ -45,7 +45,6 @@ public class Menu extends State implements StateMethods{
         return instance;
     }
 
-    @Override
     public void update() {
         for (MenuButton button : buttons) {
             button.update();
@@ -61,12 +60,10 @@ public class Menu extends State implements StateMethods{
         }
     }
 
-    @Override
     public void mouseClicked(MouseEvent e) {
 
     }
 
-    @Override
     public void mousePressed(MouseEvent e) {
         for (MenuButton button : buttons) {
             if (isIn(e,button)){
@@ -76,7 +73,6 @@ public class Menu extends State implements StateMethods{
         }
     }
 
-    @Override
     public void mouseReleased(MouseEvent e) {
         for (MenuButton button : buttons) {
             if (isIn(e,button)){
@@ -92,7 +88,6 @@ public class Menu extends State implements StateMethods{
             button.resetBools();
     }
 
-    @Override
     public void mouseMoved(MouseEvent e) {
         for (MenuButton button : buttons)
             button.setMouseOver(false);
@@ -104,14 +99,12 @@ public class Menu extends State implements StateMethods{
         }
     }
 
-    @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER){
             Gamestate.state = Gamestate.PLAYING;
         }
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
 
     }
