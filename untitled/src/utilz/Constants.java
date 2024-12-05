@@ -17,4 +17,8 @@ public class Constants {
     public static class PauseButtons{
         public static final int SOUND_SIZE = 42;
     }
+
+    public static class URMButtons{
+        public static final int URM_WIDTH = 56;
+    }
 }

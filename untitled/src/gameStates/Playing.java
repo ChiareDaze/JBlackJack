@@ -16,7 +16,7 @@ public class Playing extends State implements StateMethods {
     private CardsManager cardsManager = CardsManager.getInstace();
     private Menu menu;
     private PauseOverlay pauseOverlay;
-    private boolean paused = true;
+    private boolean paused = false;
 
 
     private Playing() {
@@ -32,19 +32,26 @@ public class Playing extends State implements StateMethods {
 
     private void initClasses(){
         menu = Menu.getInstance();
-        pauseOverlay = new PauseOverlay();
+        pauseOverlay = new PauseOverlay(this);
     }
 
     public void update(){
-        cardsManager.update();
+        if (!paused){
+            cardsManager.update();
+            pauseOverlay.update();
+        }
 
-        pauseOverlay.update();
+        else {
+            pauseOverlay.update();
+        }
+
     }
 
     public void draw(Graphics g){
         cardsManager.draw(g);
 
-        pauseOverlay.draw(g);
+        if (paused)
+            pauseOverlay.draw(g);
     }
 
     @Override
@@ -73,7 +80,13 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        switch (e.getKeyCode()){
+            case KeyEvent.VK_ESCAPE:
+                paused = !paused;
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -88,6 +101,10 @@ public class Playing extends State implements StateMethods {
 
     public void stayButtonPressed(){
         cardsManager.stayButtonPressed();
+    }
+
+    public void unpauseGame(){
+        paused = false;
     }
 
 }
