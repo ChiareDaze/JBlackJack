@@ -1,10 +1,6 @@
 package view.ui;
 
-import gameStates.Gamestate;
-import gameStates.PlayingModel;
-
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import static model.utilz.Constants.URMButtons.*;
 
@@ -16,11 +12,9 @@ public class PauseOverlay {
     private int bgX, bgY, bgW, bgH;
     private SoundButton musicButton, sfxButton;
     private UrmButton menuB, replyB, unpausedB;
-    private PlayingModel playingModel;
 
-    public PauseOverlay(PlayingModel playingModel){
+    public PauseOverlay(){
 
-        this.playingModel = playingModel;
         loadBackground();
         createSoundButtons();
         createUrmButtons();
@@ -78,111 +72,23 @@ public class PauseOverlay {
         unpausedB.draw(g);
     }
 
-    private boolean isIn(MouseEvent e, PauseButton button){
-        return (button.getBounds().contains(e.getX(), e.getY()));
+    public SoundButton getMusicButton() {
+        return musicButton;
     }
 
-    //todo: controller
-
-    public void mouseDragged(MouseEvent e) {
-
+    public SoundButton getSfxButton() {
+        return sfxButton;
     }
 
-    //todo: controller
-
-    public void mousePressed(MouseEvent e) {
-        if (isIn(e, musicButton)){
-            musicButton.setMousePressed(true);
-        }
-
-        else if (isIn(e, sfxButton)){
-            sfxButton.setMousePressed(true);
-        }
-
-        else if (isIn(e, menuB)){
-            menuB.setMousePressed(true);
-        }
-
-        else if (isIn(e, replyB)){
-            replyB.setMousePressed(true);
-        }
-
-        else if (isIn(e, unpausedB)){
-            unpausedB.setMousePressed(true);
-        }
+    public UrmButton getMenuB() {
+        return menuB;
     }
 
-    //todo: controller
-
-    public void mouseReleased(MouseEvent e) {
-
-        if (isIn(e, musicButton)){
-            if (musicButton.isMousePressed()){
-                musicButton.setMuted(!musicButton.isMuted());
-            }
-        }
-
-        else if (isIn(e, sfxButton)){
-            if (sfxButton.isMousePressed()){
-                sfxButton.setMuted(!sfxButton.isMuted());
-            }
-        }
-
-        else if (isIn(e, menuB)){
-            if (menuB.isMousePressed()){
-                Gamestate.state = Gamestate.MENU;
-                playingModel.unpauseGame();
-            }
-        }
-
-        else if (isIn(e, replyB)){
-            if (replyB.isMousePressed()){
-                //Gamestate.state = Gamestate.PLAYING;
-                System.out.println("reply!!");
-            }
-        }
-
-        else if (isIn(e, unpausedB)){
-            if (unpausedB.isMousePressed()){
-                playingModel.unpauseGame();
-            }
-        }
-
-        musicButton.reset();
-        sfxButton.reset();
-        menuB.resetBools();
-        replyB.resetBools();
-        unpausedB.resetBools();
-
+    public UrmButton getReplyB() {
+        return replyB;
     }
 
-    //todo: controller
-
-    public void mouseMoved(MouseEvent e) {
-        musicButton.setMouseOver(false);
-        sfxButton.setMouseOver(false);
-        menuB.setMouseOver(false);
-        replyB.setMouseOver(false);
-        unpausedB.setMouseOver(false);
-
-        if (isIn(e, musicButton)){
-            musicButton.setMouseOver(true);
-        }
-
-        else if (isIn(e, sfxButton)){
-            sfxButton.setMouseOver(true);
-        }
-
-        else if (isIn(e, menuB)){
-            menuB.setMouseOver(true);
-        }
-
-        else if (isIn(e, replyB)){
-            replyB.setMouseOver(true);
-        }
-
-        else if (isIn(e, unpausedB)){
-            unpausedB.setMouseOver(true);
-        }
+    public UrmButton getUnpausedB() {
+        return unpausedB;
     }
 }

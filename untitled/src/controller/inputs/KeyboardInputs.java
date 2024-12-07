@@ -1,10 +1,10 @@
-package controller;
+package controller.inputs;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import controller.MenuController;
+import controller.PlayingController;
 import gameStates.Gamestate;
-import gameStates.Menu;
-import gameStates.PlayingModel;
 import main.GamePanel;
 
 public class KeyboardInputs implements KeyListener {
@@ -25,7 +25,7 @@ public class KeyboardInputs implements KeyListener {
 
         switch (Gamestate.state){
             case MENU:
-                Menu.getInstance().keyPressed(e);
+                MenuController.getInstance().keyPressed(e);
                 break;
             case PLAYING:
                 PlayingController.getInstance().keyPressed(e);
@@ -40,7 +40,7 @@ public class KeyboardInputs implements KeyListener {
     public void keyReleased(KeyEvent e) {
         switch (Gamestate.state){
             case MENU:
-                Menu.getInstance().keyReleased(e);
+                MenuController.getInstance().keyReleased(e);
                 break;
             case PLAYING:
                 PlayingController.getInstance().keyReleased(e);

@@ -1,9 +1,9 @@
 package controller.inputs;
 
+import controller.MenuController;
 import controller.PlayingController;
 import gameStates.Gamestate;
-import gameStates.Menu;
-import gameStates.PlayingModel;
+import gameStates.MenuModel;
 import main.GamePanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -12,6 +12,9 @@ import java.awt.event.MouseMotionListener;
 public class MouseInputs implements MouseListener, MouseMotionListener {
 
     private GamePanel gamePanel;
+    private MenuModel menuModel = MenuModel.getInstance();
+    private MenuController menuController = MenuController.getInstance();
+    private PlayingController playingController = PlayingController.getInstance();
 
     public MouseInputs(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -35,10 +38,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
         switch (Gamestate.state){
             case MENU:
-                Menu.getInstance().mousePressed(e);
+                menuController.mousePressed(e);
                 break;
             case PLAYING:
-                PlayingController.getInstance().mousePressed(e);
+                playingController.mousePressed(e);
                 break;
             default:
                 break;
@@ -51,10 +54,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
         switch (Gamestate.state){
             case MENU:
-                Menu.getInstance().mouseReleased(e);
+                menuController.mouseReleased(e);
                 break;
             case PLAYING:
-                PlayingController.getInstance().mouseReleased(e);
+                playingController.mouseReleased(e);
                 break;
             default:
                 break;
@@ -82,10 +85,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
         switch (Gamestate.state){
             case MENU:
-                Menu.getInstance().mouseMoved(e);
+                menuController.mouseMoved(e);
                 break;
             case PLAYING:
-                PlayingController.getInstance().mouseMoved(e);
+                playingController.mouseMoved(e);
                 break;
             default:
                 break;

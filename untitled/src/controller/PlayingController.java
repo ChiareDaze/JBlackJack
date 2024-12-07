@@ -12,13 +12,13 @@ public class PlayingController {
 
     private static PlayingController instance;
     private PlayingModel playingModel = PlayingModel.getInstance();
-    private PauseOverlay pauseOverlay;
+    private PauseOverlayController pauseOverlayController;
 
-    private PlayingController(PauseOverlay pauseOverlay){
-        this.pauseOverlay = pauseOverlay;
+    private PlayingController(PauseOverlayController pauseOverlayController){
+        this.pauseOverlayController = pauseOverlayController;
     }
 
-    public static PlayingController getInstance(PauseOverlay pauseOverlay){
+    public static PlayingController getInstance(PauseOverlayController pauseOverlay){
         if (instance == null){
             instance = new PlayingController(pauseOverlay);
         }
@@ -40,18 +40,18 @@ public class PlayingController {
 
     public void mousePressed(MouseEvent e) {
         if (playingModel.getPause())
-            pauseOverlay.mousePressed(e);
+            pauseOverlayController.mousePressed(e);
     }
 
     public void mouseReleased(MouseEvent e) {
         if (playingModel.getPause())
-            pauseOverlay.mouseReleased(e);
+            pauseOverlayController.mouseReleased(e);
 
     }
 
     public void mouseMoved(MouseEvent e) {
         if (playingModel.getPause())
-            pauseOverlay.mouseMoved(e);
+            pauseOverlayController.mouseMoved(e);
     }
 
     public void keyPressed(KeyEvent e) {
@@ -71,7 +71,6 @@ public class PlayingController {
     public void hitButtonPressed(GamePanel gamePanel){
         CardsManagerModel.getInstace().hitButtonPressed(gamePanel);
     }
-
 
     public void stayButtonPressed(){
         CardsManagerModel.getInstace().stayButtonPressed();

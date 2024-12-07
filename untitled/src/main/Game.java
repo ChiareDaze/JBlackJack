@@ -1,9 +1,11 @@
 package main;
 
+import controller.PauseOverlayController;
 import controller.PlayingController;
 import gameStates.Gamestate;
-import gameStates.Menu;
+import gameStates.MenuModel;
 import gameStates.PlayingModel;
+import view.gamestates.MenuView;
 import view.gamestates.PlayingView;
 import view.ui.PauseOverlay;
 
@@ -18,10 +20,12 @@ public class Game implements Runnable {
     private final int UPS_SET = 200;
 
     private final PlayingModel playingModel = PlayingModel.getInstance();
-    private final PauseOverlay pauseOverlay = new PauseOverlay(playingModel);
+    private final PauseOverlay pauseOverlay = new PauseOverlay();
+    private final PauseOverlayController pauseOverlayController = new PauseOverlayController();
     private final PlayingView playingView = PlayingView.getInstance(pauseOverlay);
-    private PlayingController playingController = PlayingController.getInstance(pauseOverlay);
-    private Menu menu = Menu.getInstance();
+    private PlayingController playingController = PlayingController.getInstance(pauseOverlayController);
+    private MenuModel menuModel = MenuModel.getInstance();
+    private MenuView menuView = MenuView.getInstance();
 
     public Game() {
         gamePanel = new GamePanel(this);
@@ -38,11 +42,12 @@ public class Game implements Runnable {
     public void update(){
         switch (Gamestate.state){
             case MENU:
-                menu.update();
+                menuModel.update();
+                menuView.update();
                 break;
             case PLAYING:
                 playingModel.update();
-                PlayingView.getInstance().update();
+                playingView.update();
                 break;
             default:
                 break;
@@ -52,11 +57,10 @@ public class Game implements Runnable {
     public void draw(Graphics g){
         switch (Gamestate.state){
             case MENU:
-                menu.draw(g);
+                menuView.draw(g);
                 break;
             case PLAYING:
                 playingView.draw(g);
-                //menu.draw(g);
                 break;
             case OPTIONS:
                 break;

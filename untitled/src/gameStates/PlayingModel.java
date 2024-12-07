@@ -8,7 +8,7 @@ public class PlayingModel extends State {
     protected static Game game;
     private static PlayingModel instance;
     private CardsManagerModel cardsManagerModel = CardsManagerModel.getInstace();
-    private Menu menu;
+    private MenuModel menuModel;
 
     private boolean paused = false;
 
@@ -25,7 +25,7 @@ public class PlayingModel extends State {
     }
 
     private void initClasses(){
-        menu = Menu.getInstance();
+        menuModel = MenuModel.getInstance();
     }
 
     public void update(){

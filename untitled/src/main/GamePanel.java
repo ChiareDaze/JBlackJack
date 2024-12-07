@@ -1,6 +1,5 @@
 package main;
 
-import controller.KeyboardInputs;
 import controller.PlayingController;
 import controller.inputs.*;
 import gameStates.PlayingModel;
