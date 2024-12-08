@@ -2,8 +2,8 @@ package controller.inputs;
 
 import controller.MenuController;
 import controller.PlayingController;
-import gameStates.Gamestate;
-import gameStates.MenuModel;
+import model.gameStates.Gamestate;
+import model.gameStates.MenuModel;
 import main.GamePanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

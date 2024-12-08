@@ -1,9 +1,8 @@
 package controller;
 
-import gameStates.PlayingModel;
+import model.gameStates.PlayingModel;
 import main.GamePanel;
 import model.cards.CardsManagerModel;
-import view.ui.PauseOverlay;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;

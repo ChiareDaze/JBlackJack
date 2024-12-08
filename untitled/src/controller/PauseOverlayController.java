@@ -1,7 +1,7 @@
 package controller;
 
-import gameStates.Gamestate;
-import gameStates.PlayingModel;
+import model.gameStates.Gamestate;
+import model.gameStates.PlayingModel;
 import view.ui.PauseButton;
 import view.ui.PauseOverlay;
 

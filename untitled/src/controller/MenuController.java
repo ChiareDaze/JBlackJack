@@ -1,7 +1,7 @@
 package controller;
 
-import gameStates.Gamestate;
-import gameStates.MenuModel;
+import model.gameStates.Gamestate;
+import model.gameStates.MenuModel;
 import view.gamestates.MenuView;
 import view.ui.MenuButton;
 

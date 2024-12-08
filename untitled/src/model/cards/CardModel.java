@@ -6,7 +6,7 @@ import static model.utilz.Load.Images.*;
 public class CardModel {
     private String value;
     private CardType type;
-    private boolean isHidden;
+    private boolean isHidden = false;
     int timer = 0;
 
     public CardModel(String value, CardType type) {
@@ -16,12 +16,13 @@ public class CardModel {
 
 
     public void update(){
-
+        /* timer che inverte la faccia della carta ogni 60 secondi
         timer++;
         if (timer == 60){
             isHidden = !isHidden;
             timer = 0;
         }
+         */
     }
 
     public boolean isAce(){
@@ -49,4 +50,7 @@ public class CardModel {
         return isHidden;
     }
 
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
+    }
 }

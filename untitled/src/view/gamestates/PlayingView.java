@@ -1,6 +1,6 @@
 package view.gamestates;
 
-import gameStates.PlayingModel;
+import model.gameStates.PlayingModel;
 import view.cards.CardManagerView;
 import view.ui.PauseOverlay;
 

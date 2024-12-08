@@ -2,9 +2,9 @@ package main;
 
 import controller.PauseOverlayController;
 import controller.PlayingController;
-import gameStates.Gamestate;
-import gameStates.MenuModel;
-import gameStates.PlayingModel;
+import model.gameStates.Gamestate;
+import model.gameStates.MenuModel;
+import model.gameStates.PlayingModel;
 import view.gamestates.MenuView;
 import view.gamestates.PlayingView;
 import view.ui.PauseOverlay;

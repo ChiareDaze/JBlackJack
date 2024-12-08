@@ -1,6 +1,6 @@
 package view.ui;
 
-import gameStates.Gamestate;
+import model.gameStates.Gamestate;
 import model.utilz.Load;
 
 import java.awt.*;

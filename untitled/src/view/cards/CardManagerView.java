@@ -2,8 +2,6 @@ package view.cards;
 
 import model.cards.CardModel;
 import model.cards.CardsManagerModel;
-
-import javax.smartcardio.Card;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -12,11 +10,7 @@ public class CardManagerView {
     private CardsManagerModel cardsManagerModel = CardsManagerModel.getInstace();
     private ArrayList<CardView> playerHand = new ArrayList<CardView>();
     private ArrayList <CardView> dealerHand = new ArrayList<CardView>();
-    private CardView hiddenCard;
 
-    private CardManagerView() {
-        hiddenCard = new CardView(cardsManagerModel.getHiddenCardModel());
-    }
 
     public static CardManagerView getInstance() {
         if (instance == null) {
@@ -34,8 +28,6 @@ public class CardManagerView {
 
         for (CardModel cardModel : cardsManagerModel.getDealerHand())
             dealerHand.add(new CardView(cardModel));
-
-        hiddenCard = new CardView(cardsManagerModel.getHiddenCardModel());
     }
 
     public void draw (Graphics g){
@@ -52,10 +44,6 @@ public class CardManagerView {
         for (CardView card : dealerHand){
             card.draw(g, pos, y);
             pos++;
-        }
-
-        if (cardsManagerModel.getHiddenCardActive()){
-            hiddenCard.draw(g, 0, 20);
         }
     }
 }

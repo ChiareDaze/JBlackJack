@@ -2,7 +2,6 @@ package main;
 
 import controller.PlayingController;
 import controller.inputs.*;
-import gameStates.PlayingModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -78,6 +77,7 @@ public class GamePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 hitButton.setEnabled(false);
                 stayButton.setEnabled(false);
+                PlayingController.getInstance().stayButtonPressed();
                 repaint();
             }
         });

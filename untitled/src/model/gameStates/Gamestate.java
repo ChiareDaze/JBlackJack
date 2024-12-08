@@ -1,4 +1,4 @@
-package gameStates;
+package model.gameStates;
 
 public enum Gamestate {
 

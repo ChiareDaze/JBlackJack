@@ -1,7 +1,8 @@
-package gameStates;
+package model.gameStates;
 
 import model.cards.CardsManagerModel;
 import main.Game;
+import model.entities.Dealer;
 
 public class PlayingModel extends State {
 
@@ -9,6 +10,7 @@ public class PlayingModel extends State {
     private static PlayingModel instance;
     private CardsManagerModel cardsManagerModel = CardsManagerModel.getInstace();
     private MenuModel menuModel;
+    private Dealer dealer = new Dealer(cardsManagerModel);
 
     private boolean paused = false;
 
@@ -34,6 +36,10 @@ public class PlayingModel extends State {
         }
     }
 
+    public void gameLoop(){
+
+    }
+
     public void unpauseGame(){
         paused = false;
     }
@@ -44,5 +50,9 @@ public class PlayingModel extends State {
 
     public void setPaused(boolean paused){
         this.paused = paused;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
     }
 }

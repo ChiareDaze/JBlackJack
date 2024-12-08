@@ -1,6 +1,8 @@
 package model.cards;
 
 import main.GamePanel;
+import model.entities.Dealer;
+import model.gameStates.PlayingModel;
 import model.utilz.Load.Images.CardType;
 
 import java.util.ArrayList;
@@ -19,8 +21,7 @@ public class CardsManagerModel {
 
     private int dealerSum, dealerAceCount;
     private int playerSum, playerAceCount;
-    private CardModel hiddenCardModel;
-    private Boolean isHiddenCardActive = false;
+
 
     private CardsManagerModel(){
         startGame();
@@ -34,10 +35,6 @@ public class CardsManagerModel {
     }
 
     public void update(){
-        //if (!stayButton.isEnabled()){
-        //   hiddenCardImage = new ImageIcon(getClass().getResource(hiddenCard.getImagePath())).getImage();
-        //   isHiddenCardActive = true;
-        //}
         for (CardModel cardModel : dealerHand) cardModel.update();
         for (CardModel cardModel : playerHand) cardModel.update();
     }
@@ -47,18 +44,21 @@ public class CardsManagerModel {
         buildDeck();
         shuffleDeck();
 
+
         //dealer
-        hiddenCardModel = deck.remove(deck.size() - 1); //remove the last card from the deck
-        dealerSum += hiddenCardModel.getNumericalValue();
-        if (hiddenCardModel.isAce()) dealerAceCount++;
+        //gives two card to the dealer,the first one is hidden
 
         CardModel cardModel = deck.remove(deck.size() - 1);
         dealerSum += cardModel.getNumericalValue();
         if (cardModel.isAce()) dealerAceCount++;
         dealerHand.add(cardModel);
+        cardModel = deck.remove(deck.size() - 1);
+        dealerSum += cardModel.getNumericalValue();
+        dealerHand.add(cardModel);
+        dealerHand.getFirst().setHidden(true); //dealer card is always hidden
+
 
         System.out.println("Dealer;");
-        System.out.println("Hidden model.cards.Card: " + hiddenCardModel);
         System.out.println("DealerHand" + dealerHand);
         System.out.println("DealerSum: " + dealerSum);
         System.out.println("DealerAceCount: " + dealerAceCount);
@@ -71,8 +71,6 @@ public class CardsManagerModel {
             playerHand.add(cardModel);
         }
     }
-
-
 
     public void buildDeck(){
         deck = new ArrayList<>();
@@ -128,13 +126,7 @@ public class CardsManagerModel {
     }
 
     public void stayButtonPressed(){
-        while (dealerSum < 17){
-            CardModel cardModel = deck.remove(deck.size()-1);
-            dealerSum += cardModel.getNumericalValue();
-            if (cardModel.isAce()) dealerAceCount++;
-            dealerHand.add(cardModel);
-            reduceDealerAce();
-        }
+        PlayingModel.getInstance().getDealer().dealerTurn();
     }
 
     public ArrayList<CardModel> getDealerHand() {
@@ -145,11 +137,19 @@ public class CardsManagerModel {
         return playerHand;
     }
 
-    public Boolean getHiddenCardActive() {
-        return isHiddenCardActive;
+    public int getDealerAceCount() {
+        return dealerAceCount;
     }
 
-    public CardModel getHiddenCardModel() {
-        return hiddenCardModel;
+    public int getDealerSum() {
+        return dealerSum;
+    }
+
+    public void addCardToDealerHand() {
+        CardModel cardModel = deck.remove(deck.size()-1);
+        dealerSum += cardModel.getNumericalValue();
+        if (cardModel.isAce()) dealerAceCount++;
+        dealerHand.add(cardModel);
+        reduceDealerAce();
     }
 }

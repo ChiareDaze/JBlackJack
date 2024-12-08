@@ -4,7 +4,7 @@ import java.awt.event.KeyListener;
 
 import controller.MenuController;
 import controller.PlayingController;
-import gameStates.Gamestate;
+import model.gameStates.Gamestate;
 import main.GamePanel;
 
 public class KeyboardInputs implements KeyListener {

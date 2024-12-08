@@ -1,8 +1,4 @@
-package gameStates;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import view.ui.MenuButton;
+package model.gameStates;
 
 public class MenuModel extends State{
 

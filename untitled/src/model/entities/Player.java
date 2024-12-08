@@ -1,4 +1,4 @@
-package entities;
+package model.entities;
 
 import model.cards.CardModel;
 

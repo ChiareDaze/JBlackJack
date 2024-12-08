@@ -1,7 +1,7 @@
 package view.gamestates;
 
-import gameStates.Gamestate;
-import gameStates.MenuModel;
+import model.gameStates.Gamestate;
+import model.gameStates.MenuModel;
 import model.utilz.Constants;
 import view.ui.MenuButton;
 
