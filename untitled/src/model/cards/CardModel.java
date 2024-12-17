@@ -14,17 +14,6 @@ public class CardModel {
         this.type = type;
     }
 
-
-    public void update(){
-        /* timer che inverte la faccia della carta ogni 60 secondi
-        timer++;
-        if (timer == 60){
-            isHidden = !isHidden;
-            timer = 0;
-        }
-         */
-    }
-
     public boolean isAce(){
         return value.equals("A");
     }

@@ -1,7 +1,7 @@
 package view.cards;
 
 import model.cards.CardModel;
-import model.cards.CardsManagerModel;
+import model.utilz.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -24,11 +24,10 @@ public class CardView {
     }
 
     public void draw(Graphics g, int pos, int y){
-        if (cardModel.getIsHidden()){
+        if (cardModel.getIsHidden())
             g.drawImage(backImage, cardWidth + 25 + (cardWidth + 5) * pos, y, cardWidth, cardHeight, null);
-        } else {
+        else
             g.drawImage(frontImage, cardWidth + 25 + (cardWidth + 5) * pos, y, cardWidth, cardHeight,null);
-        }
     }
 
     private void loadAnimations(){

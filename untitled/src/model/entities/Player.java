@@ -3,37 +3,26 @@ package model.entities;
 import model.cards.CardModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Player {
 
-        private List<CardModel> hand;
-        private String name;
+public class Player extends Entity {
 
-        public Player(String name) {
-            this.name = name;
-            this.hand = new ArrayList<>();
+    protected void buildHand() {
+        ArrayList<CardModel> deck = deckModel.getDeck();
+        for (int i = 0; i < 2; i++) {
+            CardModel card = deck.remove(deck.size() - 1);
+            handSum += card.getNumericalValue();
+            if (card.isAce()) aceCount++;
+            hand.add(card);
         }
+    }
 
+    public void hit(){
+        addCardToHand();
+    }
 
-        public void addCard(CardModel cardModel) {
-            hand.add(cardModel);
-        }
+    public void stay(){
 
-        /*public int getHandValue() {
-            return hand.stream()
-                    .mapToInt(card -> card.getRank().equals("ace") ? 11 : card.getValue())
-                    .sum();
-        }*/
-
-        public List<CardModel> getHand() {
-            return hand;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-
+    }
 }
 

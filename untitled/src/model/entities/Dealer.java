@@ -1,26 +1,30 @@
 package model.entities;
 
-import model.cards.CardsManagerModel;
+import model.cards.CardModel;
+import model.cards.DeckModel;
 
-public class Dealer {
+public class Dealer extends Entity implements BotAction {
 
-    private CardsManagerModel cardsManagerModel;
+    public void turn() {
 
-    public Dealer(CardsManagerModel cardsManagerModel) {
-        this.cardsManagerModel = cardsManagerModel;
-    }
+        hand.getFirst().setHidden(false);
 
-    public void dealerTurn() {
-
-        cardsManagerModel.getDealerHand().getFirst().setHidden(false);
-
-        if (cardsManagerModel.getDealerSum() < 17) {
-            while (cardsManagerModel.getDealerSum() < 17) {
-                cardsManagerModel.addCardToDealerHand();
-                cardsManagerModel.getDealerHand().getLast().setHidden(false);
-                System.out.println(cardsManagerModel.getDealerSum());
+        if (handSum < 17) {
+            while (handSum < 17) {
+                addCardToHand();
+                hand.getLast().setHidden(false);
             }
         }
     }
 
+    @Override
+    protected void buildHand() {
+        for (int i = 0; i < 2; i++) {
+            CardModel card = deck.remove(deck.size() - 1);
+            handSum += card.getNumericalValue();
+            if (card.isAce()) aceCount++;
+            hand.add(card);
+        }
+        hand.getFirst().setHidden(true);
+    }
 }

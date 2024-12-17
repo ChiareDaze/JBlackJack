@@ -1,8 +1,9 @@
 package controller;
 
+import model.cards.CardModel;
 import model.gameStates.PlayingModel;
 import main.GamePanel;
-import model.cards.CardsManagerModel;
+import model.cards.DeckModel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -68,10 +69,13 @@ public class PlayingController {
     }
 
     public void hitButtonPressed(GamePanel gamePanel){
-        CardsManagerModel.getInstace().hitButtonPressed(gamePanel);
+        playingModel.getPlayer().hit();
+        if (playingModel.getPlayer().getHandSum() > 21){
+            gamePanel.deactiveHitButton();
+        }
     }
 
     public void stayButtonPressed(){
-        CardsManagerModel.getInstace().stayButtonPressed();
+        PlayingModel.getInstance().getDealer().turn();
     }
 }

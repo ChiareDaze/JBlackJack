@@ -1,18 +1,31 @@
 package model.gameStates;
 
-import model.cards.CardsManagerModel;
+import main.GamePanel;
+import model.cards.CardModel;
+import model.cards.DeckModel;
 import main.Game;
+import model.entities.Bot;
 import model.entities.Dealer;
+import model.entities.Player;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class PlayingModel extends State {
 
-    protected static Game game;
     private static PlayingModel instance;
-    private CardsManagerModel cardsManagerModel = CardsManagerModel.getInstace();
+    protected static Game game;
+
+    private DeckModel deckModel = DeckModel.getInstace();
     private MenuModel menuModel;
-    private Dealer dealer = new Dealer(cardsManagerModel);
 
     private boolean paused = false;
+
+    private Player player = new Player();
+    private Dealer dealer = new Dealer();
+    private List<Bot> botList = new ArrayList<>();
+    private int numberOfBots = 0;
 
 
     private PlayingModel() {
@@ -28,16 +41,16 @@ public class PlayingModel extends State {
 
     private void initClasses(){
         menuModel = MenuModel.getInstance();
+        initBotList();
     }
 
     public void update(){
-        if (!paused){
-            cardsManagerModel.update();
-        }
     }
 
-    public void gameLoop(){
-
+    public void initBotList(){
+        for (int i = 0; i < numberOfBots; i++){
+            botList.add(new Bot());
+        }
     }
 
     public void unpauseGame(){
@@ -54,5 +67,17 @@ public class PlayingModel extends State {
 
     public Dealer getDealer() {
         return dealer;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Bot getBot(int index){
+        return botList.get(index);
+    }
+
+    public List<Bot> getBotList() {
+        return botList;
     }
 }
