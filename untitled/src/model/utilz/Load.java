@@ -11,6 +11,8 @@ public class Load {
     public static final String PAUSE_BACKGROUND = "/menuStuff/pause_menu.png";
     public static final String SOUND_BUTTONS = "/menuStuff/sound_button.png";
     public static final String URM_BUTTONS = "/menuStuff/urm_buttons.png";
+    public static final String BOT_BUTTONS = "/menuStuff/bot_button.png";
+    public static final String BOT_COUNT = "/menuStuff/bot_count.png";
 
     public static BufferedImage ImportImg(String path) {
         BufferedImage img = null;

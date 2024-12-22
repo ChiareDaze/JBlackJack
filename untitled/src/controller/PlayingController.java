@@ -1,10 +1,7 @@
 package controller;
 
-import model.cards.CardModel;
 import model.gameStates.PlayingModel;
 import main.GamePanel;
-import model.cards.DeckModel;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -75,7 +72,9 @@ public class PlayingController {
         }
     }
 
-    public void stayButtonPressed(){
-        PlayingModel.getInstance().getDealer().turn();
+    public void stayButtonPressed(GamePanel gamePanel){
+        gamePanel.deactiveHitButton();
+        playingModel.nextTurn();
+        gamePanel.deactiveStayButton();
     }
 }

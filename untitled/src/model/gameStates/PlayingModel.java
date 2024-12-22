@@ -1,16 +1,16 @@
 package model.gameStates;
 
-import main.GamePanel;
-import model.cards.CardModel;
 import model.cards.DeckModel;
 import main.Game;
 import model.entities.Bot;
 import model.entities.Dealer;
 import model.entities.Player;
+import model.utilz.Constants.Turns;
+import static model.utilz.Constants.Turns.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+
 
 public class PlayingModel extends State {
 
@@ -22,10 +22,12 @@ public class PlayingModel extends State {
 
     private boolean paused = false;
 
-    private Player player = new Player();
-    private Dealer dealer = new Dealer();
+    private Player player = new Player(this);
+    private Dealer dealer = new Dealer(this);
     private List<Bot> botList = new ArrayList<>();
     private int numberOfBots = 0;
+    private Turns currentTurn = PLAYER;
+    private boolean gameFinished = false;
 
 
     private PlayingModel() {
@@ -45,11 +47,57 @@ public class PlayingModel extends State {
     }
 
     public void update(){
+        switch (currentTurn){
+            case PLAYER -> {}
+            case DEALER -> dealer.turn();
+            case BOT1 -> botList.get(0).turn();
+            case BOT2 -> botList.get(1).turn();
+            case BOT3 -> botList.get(2).turn();
+            case NONE -> {}
+        }
+    }
+    
+    public void nextTurn(){
+        switch (currentTurn){
+            
+            case PLAYER:
+                if (botList.size() >= 1)
+                    currentTurn = BOT1;
+                else
+                    currentTurn = DEALER;
+                break;
+            
+            case BOT1:
+                if (botList.size() >= 2)
+                    currentTurn = BOT2;
+                else
+                    currentTurn = DEALER;
+                break;
+
+            case BOT2:
+                if (botList.size() >= 3)
+                    currentTurn = BOT3;
+                else
+                    currentTurn = DEALER;
+                break;
+
+            case BOT3:
+                currentTurn = DEALER;
+                break;
+
+            case DEALER:
+                currentTurn = NONE;
+                break;
+
+            case NONE:
+                gameFinished = true;
+                break;
+        }
     }
 
     public void initBotList(){
         for (int i = 0; i < numberOfBots; i++){
-            botList.add(new Bot());
+            botList.add(new Bot(this));
         }
     }
 

@@ -19,4 +19,9 @@ public class Constants {
     public static class URMButtons{
         public static final int URM_WIDTH = 56;
     }
+
+    public enum Turns{
+        PLAYER, DEALER, BOT1, BOT2, BOT3, NONE;
+
+    }
 }

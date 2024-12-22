@@ -77,7 +77,7 @@ public class GamePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 hitButton.setEnabled(false);
                 stayButton.setEnabled(false);
-                PlayingController.getInstance().stayButtonPressed();
+                PlayingController.getInstance().stayButtonPressed(GamePanel.this);
                 repaint();
             }
         });
@@ -87,4 +87,7 @@ public class GamePanel extends JPanel {
         hitButton.setEnabled(false);
     }
 
+    public void deactiveStayButton() {
+        stayButton.setEnabled(false);
+    }
 }

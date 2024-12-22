@@ -2,16 +2,25 @@ package model.entities;
 
 import model.cards.CardModel;
 import model.cards.DeckModel;
+import model.gameStates.PlayingModel;
 
 import java.util.ArrayList;
 
 public abstract class Entity {
 
+    protected PlayingModel playingModel;
     protected DeckModel deckModel = DeckModel.getInstace();
     protected ArrayList<CardModel> deck = deckModel.getDeck();
     protected ArrayList<CardModel> hand = new ArrayList<CardModel>();
     protected int handSum = 0;
     protected int aceCount = 0;
+    protected long lastActionTime = 0;
+    protected long delayActionTime = 700;
+
+    public Entity(PlayingModel playingModel) {
+        this.playingModel = playingModel;
+        buildHand();
+    }
 
     protected abstract void buildHand();
 

@@ -115,7 +115,6 @@ public class Game implements Runnable {
 
     public void windowFocusLost(){
         if (Gamestate.state == Gamestate.PLAYING){
-
         }
     }
 }

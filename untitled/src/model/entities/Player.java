@@ -1,11 +1,16 @@
 package model.entities;
 
 import model.cards.CardModel;
+import model.gameStates.PlayingModel;
 
 import java.util.ArrayList;
 
 
 public class Player extends Entity {
+
+    public Player(PlayingModel playingModel) {
+        super(playingModel);
+    }
 
     protected void buildHand() {
         ArrayList<CardModel> deck = deckModel.getDeck();
