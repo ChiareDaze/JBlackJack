@@ -3,7 +3,6 @@ package view.ui;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import static model.utilz.Constants.URMButtons.*;
-
 import static model.utilz.Constants.PauseButtons.SOUND_SIZE;
 
 public class PauseOverlay {
@@ -33,7 +32,6 @@ public class PauseOverlay {
         unpausedB = new UrmButton(unpausedX, bY,URM_WIDTH, URM_WIDTH, 0);
 
     }
-
 
     private void createSoundButtons() {
         musicButton = new SoundButton(335, 215, SOUND_SIZE, 42);

@@ -3,10 +3,13 @@ package view.gamestates;
 import model.gameStates.Gamestate;
 import model.gameStates.MenuModel;
 import model.utilz.Constants;
+import view.ui.BotButton;
+import view.ui.BotDisplay;
 import view.ui.MenuButton;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import static model.utilz.Constants.PauseButtons.SOUND_SIZE;
 
 public class MenuView {
 
@@ -15,6 +18,8 @@ public class MenuView {
     private BufferedImage background;
     private int menuX, menuY, menuHeight, menuWidth;
     private MenuModel menuModel = MenuModel.getInstance();
+    private BotButton plus, minus;
+    private BotDisplay botDisplay;
 
     private MenuView() {
         loadButtons();
@@ -40,12 +45,20 @@ public class MenuView {
         buttons[0] = new MenuButton(Constants.WIDTH / 2 , 210, 0, Gamestate.PLAYING);
         buttons[1] = new MenuButton(Constants.WIDTH / 2 , 275, 1, Gamestate.OPTIONS);
         buttons[2] = new MenuButton(Constants.WIDTH / 2 , 340, 2, Gamestate.QUIT);
+
+        plus = new BotButton(200, 470, SOUND_SIZE, SOUND_SIZE, 0);
+        minus = new BotButton(350, 470, SOUND_SIZE, SOUND_SIZE, 1);
+
+        botDisplay = new BotDisplay(273, 470, SOUND_SIZE, SOUND_SIZE);
     }
 
     public void update() {
         for (MenuButton button : buttons) {
             button.update();
         }
+
+        plus.update();
+        minus.update();
     }
 
     public void draw(Graphics g) {
@@ -64,14 +77,30 @@ public class MenuView {
         for (MenuButton button : buttons) {
             button.draw(g);
         }
+
+        plus.draw(g);
+        minus.draw(g);
+        botDisplay.draw(g);
+
     }
 
     public void resetButtons() {
         for (MenuButton button : buttons)
             button.resetBools();
+
+        plus.resetBools();
+        minus.resetBools();
     }
 
     public MenuButton[] getButtons() {
         return buttons;
+    }
+
+    public BotButton getPlus() {
+        return plus;
+    }
+
+    public BotButton getMinus() {
+        return minus;
     }
 }

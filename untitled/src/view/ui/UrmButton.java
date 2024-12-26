@@ -36,13 +36,10 @@ public class UrmButton extends PauseButton{
         if (mousePressed){
             index = 2;
         }
-        
     }
     
     public void draw(Graphics g){
-        System.out.println(mouseOver);
         g.drawImage(imgs[index], x, y, URM_WIDTH, URM_WIDTH, null);
-        
     }
 
     public void resetBools(){

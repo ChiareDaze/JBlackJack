@@ -101,6 +101,17 @@ public class PlayingModel extends State {
         }
     }
 
+    public void increaseBotCount(){
+        if (numberOfBots < 3){
+            numberOfBots++;
+        }
+    }
+
+    public void decreaseBotCount(){
+        if (numberOfBots > 0)
+            numberOfBots--;
+    }
+
     public void unpauseGame(){
         paused = false;
     }
@@ -119,6 +130,10 @@ public class PlayingModel extends State {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public int getNumberOfBots(){
+        return numberOfBots;
     }
 
     public Bot getBot(int index){
