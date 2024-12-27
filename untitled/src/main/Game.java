@@ -7,6 +7,7 @@ import model.gameStates.MenuModel;
 import model.gameStates.PlayingModel;
 import view.gamestates.MenuView;
 import view.gamestates.PlayingView;
+import view.music.MusicManager;
 import view.ui.PauseOverlay;
 
 import java.awt.*;
@@ -26,6 +27,7 @@ public class Game implements Runnable {
     private final PlayingView playingView = PlayingView.getInstance();
     private MenuModel menuModel = MenuModel.getInstance();
     private MenuView menuView = MenuView.getInstance();
+    private MusicManager musicManager = MusicManager.getInstance();
 
     public Game() {
         playingController = new PlayingController(pauseOverlayController);

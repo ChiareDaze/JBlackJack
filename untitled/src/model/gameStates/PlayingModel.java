@@ -47,7 +47,7 @@ public class PlayingModel extends State {
     }
 
     public void update(){
-        if (!paused){
+        if (paused){
             return;
         }
 

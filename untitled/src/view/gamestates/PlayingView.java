@@ -3,6 +3,7 @@ package view.gamestates;
 import controller.PlayingController;
 import model.gameStates.PlayingModel;
 import view.cards.CardManagerView;
+import view.music.MusicManager;
 import view.ui.PauseOverlay;
 import view.ui.PlayerButton;
 
@@ -15,6 +16,7 @@ public class PlayingView {
     private PauseOverlay pauseOverlay;
     private PlayerButton hitButton, stayButton;
     private PlayingController playingController;
+    private boolean isSongPlaying = false;
 
     private PlayingView() {
 
@@ -43,6 +45,11 @@ public class PlayingView {
     }
 
     public void draw(Graphics g) {
+        if (!isSongPlaying) {
+            MusicManager.getInstance().playPlayingSong();
+            isSongPlaying = true;
+        }
+
         CardManagerView.getInstance().draw(g);
 
         if (playingModel.getPause()) {
