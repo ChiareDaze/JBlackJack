@@ -24,8 +24,10 @@ public class PlayingController {
     }
 
     public void mousePressed(MouseEvent e) {
-        if (playingModel.getPause())
+        if (playingModel.getPause()) {
             pauseOverlayController.mousePressed(e);
+            return;
+        }
 
         PlayerButton hitButton = playingView.getHitButton();
         PlayerButton stayButton = playingView.getStayButton();
@@ -38,8 +40,10 @@ public class PlayingController {
     }
 
     public void mouseReleased(MouseEvent e) {
-        if (playingModel.getPause())
+        if (playingModel.getPause()) {
             pauseOverlayController.mouseReleased(e);
+            return;
+        }
 
         PlayerButton hitButton = playingView.getHitButton();
         PlayerButton stayButton = playingView.getStayButton();
@@ -62,8 +66,10 @@ public class PlayingController {
     }
 
     public void mouseMoved(MouseEvent e) {
-        if (playingModel.getPause())
+        if (playingModel.getPause()) {
             pauseOverlayController.mouseMoved(e);
+            return;
+        }
 
         PlayerButton hitButton = playingView.getHitButton();
         PlayerButton stayButton = playingView.getStayButton();

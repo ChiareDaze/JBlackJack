@@ -47,6 +47,10 @@ public class PlayingModel extends State {
     }
 
     public void update(){
+        if (!paused){
+            return;
+        }
+
         switch (currentTurn){
             case PLAYER -> {}
             case DEALER -> dealer.turn();
