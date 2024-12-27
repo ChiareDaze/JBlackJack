@@ -111,4 +111,5 @@ public class MenuController {
     public boolean isInBotButton(MouseEvent e, BotButton bb){
         return bb.getBounds().contains(e.getX(), e.getY());
     }
+
 }

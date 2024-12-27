@@ -14,10 +14,11 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     private GamePanel gamePanel;
     private MenuModel menuModel = MenuModel.getInstance();
     private MenuController menuController = MenuController.getInstance();
-    private PlayingController playingController = PlayingController.getInstance();
+    private PlayingController playingController;
 
-    public MouseInputs(GamePanel gamePanel) {
+    public MouseInputs(GamePanel gamePanel, PlayingController playingController) {
         this.gamePanel = gamePanel;
+        this.playingController = playingController;
     }
 
     @Override
@@ -25,7 +26,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
         switch (Gamestate.state){
             case PLAYING:
-                PlayingController.getInstance().mouseClicked(e);
+                playingController.mouseClicked(e);
                 break;
             default:
                 break;

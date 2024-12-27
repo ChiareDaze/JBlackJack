@@ -12,9 +12,6 @@ public class PauseOverlayController {
     private PauseOverlay pauseOverlay = new PauseOverlay();
     private PlayingModel playingModel = PlayingModel.getInstance();
 
-    public void mouseDragged(MouseEvent e) {
-
-    }
 
     public void mousePressed(MouseEvent e) {
         if (isIn(e, pauseOverlay.getMusicButton())){
@@ -107,7 +104,6 @@ public class PauseOverlayController {
             pauseOverlay.getUnpausedB().setMouseOver(true);
         }
     }
-
     private boolean isIn(MouseEvent e, PauseButton button){
         return (button.getBounds().contains(e.getX(), e.getY()));
     }

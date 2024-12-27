@@ -5,6 +5,7 @@ import model.gameStates.MenuModel;
 import model.utilz.Constants;
 import view.ui.BotButton;
 import view.ui.BotDisplay;
+import view.ui.BotNumber;
 import view.ui.MenuButton;
 
 import java.awt.*;
@@ -20,6 +21,7 @@ public class MenuView {
     private MenuModel menuModel = MenuModel.getInstance();
     private BotButton plus, minus;
     private BotDisplay botDisplay;
+    private BotNumber botNumber;
 
     private MenuView() {
         loadButtons();
@@ -38,18 +40,19 @@ public class MenuView {
         menuWidth = background.getWidth();
         menuHeight = background.getHeight();
         menuX = Constants.WIDTH / 2 - menuWidth / 2;
-        menuY = 100;
+        menuY = 150;
     }
 
     private void loadButtons() {
-        buttons[0] = new MenuButton(Constants.WIDTH / 2 , 210, 0, Gamestate.PLAYING);
-        buttons[1] = new MenuButton(Constants.WIDTH / 2 , 275, 1, Gamestate.OPTIONS);
-        buttons[2] = new MenuButton(Constants.WIDTH / 2 , 340, 2, Gamestate.QUIT);
+        buttons[0] = new MenuButton(Constants.WIDTH / 2 , 260, 0, Gamestate.PLAYING);
+        buttons[1] = new MenuButton(Constants.WIDTH / 2 , 325, 1, Gamestate.OPTIONS);
+        buttons[2] = new MenuButton(Constants.WIDTH / 2 , 390, 2, Gamestate.QUIT);
 
-        plus = new BotButton(200, 470, SOUND_SIZE, SOUND_SIZE, 0);
-        minus = new BotButton(350, 470, SOUND_SIZE, SOUND_SIZE, 1);
+        plus = new BotButton(410, 600, SOUND_SIZE, SOUND_SIZE, 0);
+        minus = new BotButton(540, 600, SOUND_SIZE, SOUND_SIZE, 1);
 
-        botDisplay = new BotDisplay(273, 470, SOUND_SIZE, SOUND_SIZE);
+        botDisplay = new BotDisplay(475, 600, SOUND_SIZE, SOUND_SIZE);
+        botNumber = new BotNumber(465, 600, 300, 42);
     }
 
     public void update() {
@@ -78,9 +81,13 @@ public class MenuView {
             button.draw(g);
         }
 
+        int y = 530;
+        int pos = 352;
+
         plus.draw(g);
         minus.draw(g);
         botDisplay.draw(g);
+        botNumber.draw(g,pos,y);
 
     }
 

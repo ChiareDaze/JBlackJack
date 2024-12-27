@@ -30,7 +30,6 @@ public class BotDisplay {
 
         for (int i = 0; i < displayImgs.length; i++) {
             displayImgs[i] = temp.getSubimage(i * SOUND_SIZE, 0, SOUND_SIZE, SOUND_SIZE);
-            System.out.println("aa");
         }
     }
 

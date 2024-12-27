@@ -1,8 +1,10 @@
 package view.gamestates;
 
+import controller.PlayingController;
 import model.gameStates.PlayingModel;
 import view.cards.CardManagerView;
 import view.ui.PauseOverlay;
+import view.ui.PlayerButton;
 
 import java.awt.*;
 
@@ -11,23 +13,33 @@ public class PlayingView {
     private PlayingModel playingModel = PlayingModel.getInstance();
     private static PlayingView instance;
     private PauseOverlay pauseOverlay;
+    private PlayerButton hitButton, stayButton;
+    private PlayingController playingController;
 
-    private PlayingView(PauseOverlay pauseOverlay) {
-        this.pauseOverlay = pauseOverlay; ;
+    private PlayingView() {
+
+
     }
 
-    public static PlayingView getInstance(PauseOverlay pauseOverlay) {
-        if (instance == null) {
-            instance = new PlayingView(pauseOverlay);
-        }
-        return instance;
+    private void initButtons() {
+        hitButton = new PlayerButton(400, 620, 0, playingController);
+        stayButton = new PlayerButton(600, 620, 1, playingController);
     }
 
     public static PlayingView getInstance() {
         if (instance == null) {
-            throw new IllegalStateException("PlayingView instance is null, use getInstance(PauseOverlay pauseOverlay) instead");
+            instance = new PlayingView();
         }
         return instance;
+    }
+
+    public void startPauseOverlay(PauseOverlay pauseOverlay) {
+        this.pauseOverlay = pauseOverlay;
+    }
+
+    public void startPlayingController(PlayingController playingController) {
+        this.playingController = playingController;
+        initButtons();
     }
 
     public void draw(Graphics g) {
@@ -36,6 +48,9 @@ public class PlayingView {
         if (playingModel.getPause()) {
             pauseOverlay.draw(g);
         }
+
+        hitButton.draw(g);
+        stayButton.draw(g);
     }
 
     public void update(){
@@ -46,5 +61,21 @@ public class PlayingView {
         else {
             pauseOverlay.update();
         }
+
+        hitButton.update();
+        stayButton.update();
+    }
+
+    public void resetButtons() {
+        hitButton.resetBools();
+        stayButton.resetBools();
+    }
+
+    public PlayerButton getHitButton() {
+        return hitButton;
+    }
+
+    public PlayerButton getStayButton() {
+        return stayButton;
     }
 }

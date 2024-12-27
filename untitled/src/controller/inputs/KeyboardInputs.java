@@ -10,9 +10,11 @@ import main.GamePanel;
 public class KeyboardInputs implements KeyListener {
 
     private final main.GamePanel gamePanel;
+    private final PlayingController playingController;
 
-    public KeyboardInputs(GamePanel gamePanel) {
+    public KeyboardInputs(GamePanel gamePanel, PlayingController playingController) {
         this.gamePanel = gamePanel;
+        this.playingController = playingController;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class KeyboardInputs implements KeyListener {
                 MenuController.getInstance().keyPressed(e);
                 break;
             case PLAYING:
-                PlayingController.getInstance().keyPressed(e);
+                playingController.keyPressed(e);
                 break;
             default:
                 break;
@@ -43,7 +45,7 @@ public class KeyboardInputs implements KeyListener {
                 MenuController.getInstance().keyReleased(e);
                 break;
             case PLAYING:
-                PlayingController.getInstance().keyReleased(e);
+                playingController.keyReleased(e);
                 break;
             default:
                 break;

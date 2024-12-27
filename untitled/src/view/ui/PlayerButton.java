@@ -1,46 +1,57 @@
 package view.ui;
 
-import model.gameStates.Gamestate;
+import controller.PlayingController;
+import model.gameStates.PlayingModel;
+import model.utilz.Constants;
 import model.utilz.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import static model.utilz.Constants.UI.Buttons.*;
 
-public class MenuButton {
+public class PlayerButton {
 
     private int xPos, yPos, rowIndex, index;
     private int xOffsetCenter = B_WIDTH / 2;
-    private Gamestate state;
     private BufferedImage[] imgs;
     private boolean mouseOver, mousePressed;
     private Rectangle bounds;
-    private BotButton plus, minus;
+    private PlayingController playingController;
 
-    public MenuButton(int xPos, int yPos, int rowIndex, Gamestate state){
+    public PlayerButton (int xPos, int yPos, int rowIndex, PlayingController playingController){
         this.xPos = xPos;
         this.yPos = yPos;
         this.rowIndex = rowIndex;
-        this.state = state;
+        this.playingController = playingController;
 
         loadImages();
         initBounds();
+    }
+
+    private void loadImages() {
+        imgs = new BufferedImage[3];
+        BufferedImage temp = Load.ImportImg(Load.PLAYER_BUTTONS);
+        for (int i = 0; i < imgs.length; i++) {
+            imgs[i] = temp.getSubimage(i * B_WIDTH, rowIndex * B_HEIGHT, B_WIDTH, B_HEIGHT);
+        }
     }
 
     private void initBounds() {
         bounds = new Rectangle(xPos - xOffsetCenter, yPos, B_WIDTH, B_HEIGHT);
     }
 
-    private void loadImages() {
-        imgs = new BufferedImage[3];
-        BufferedImage temp = Load.ImportImg(Load.MENU_BUTTONS);
-        for (int i = 0; i < imgs.length; i++) {
-            imgs[i] = temp.getSubimage(i * B_WIDTH, rowIndex * B_HEIGHT, B_WIDTH, B_HEIGHT);
-        }
-    }
-
     public void draw(java.awt.Graphics g){
-        g.drawImage(imgs[index], xPos - xOffsetCenter, yPos, B_WIDTH,  B_HEIGHT, null);
+
+        if (PlayingModel.getInstance().getCurrentTurn() != Constants.Turns.PLAYER){
+            g.drawImage(imgs[2], xPos - xOffsetCenter, yPos, B_WIDTH,  B_HEIGHT, null);
+            return;
+        }
+
+        if (playingController.isHitButtonDeactivated() && rowIndex == 0)
+            g.drawImage(imgs[2], xPos - xOffsetCenter, yPos, B_WIDTH,  B_HEIGHT, null);
+
+        else
+            g.drawImage(imgs[index], xPos - xOffsetCenter, yPos, B_WIDTH,  B_HEIGHT, null);
     }
 
     public void update(){
@@ -51,7 +62,6 @@ public class MenuButton {
         if (mousePressed){
             index = 2;
         }
-
     }
 
     public boolean isMousePressed() {
@@ -68,10 +78,6 @@ public class MenuButton {
 
     public Rectangle getBounds(){
         return bounds;
-    }
-
-    public void applyGameState(){
-        Gamestate.state = state;
     }
 
     public void resetBools(){

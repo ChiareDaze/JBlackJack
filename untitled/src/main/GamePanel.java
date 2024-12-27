@@ -15,18 +15,14 @@ public class GamePanel extends JPanel {
     private KeyboardInputs keyboardInputs;
     private Game game;
 
-    private JPanel buttonPanel;
-    private JButton hitButton, stayButton;
-
     public GamePanel(Game game) {
 
         this.game = game;
-        mouseInputs = new MouseInputs(this);
-        keyboardInputs = new KeyboardInputs(this);
+        mouseInputs = new MouseInputs(this, game.getPlayerController());
+        keyboardInputs = new KeyboardInputs(this, game.getPlayerController());
 
         setBackground(new Color (53,101,77));
         setPanelSize();
-        initButtons();
 
         addKeyListener(keyboardInputs);
         addMouseListener(mouseInputs);
@@ -48,46 +44,5 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         game.draw(g);
 
-    }
-
-    private void initButtons(){
-
-        buttonPanel = new JPanel();
-        hitButton = new JButton("Hit");
-        stayButton = new JButton("Stay");
-
-        hitButton.setFocusable(false);
-        buttonPanel.add(hitButton);
-        stayButton.setFocusable(false);
-        buttonPanel.add(stayButton);
-        add(buttonPanel, BorderLayout.SOUTH);
-
-        hitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                PlayingController.getInstance().hitButtonPressed(GamePanel.this);
-                repaint(); //calls paintComponent
-            }
-        });
-        repaint();
-
-        stayButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                hitButton.setEnabled(false);
-                stayButton.setEnabled(false);
-                PlayingController.getInstance().stayButtonPressed(GamePanel.this);
-                repaint();
-            }
-        });
-    }
-
-    public void deactiveHitButton(){
-        hitButton.setEnabled(false);
-    }
-
-    public void deactiveStayButton() {
-        stayButton.setEnabled(false);
     }
 }

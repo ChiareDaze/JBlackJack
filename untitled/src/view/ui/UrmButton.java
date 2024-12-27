@@ -47,9 +47,6 @@ public class UrmButton extends PauseButton{
         mousePressed = false;
     }
 
-    public boolean isMouseOver() {
-        return mouseOver;
-    }
 
     public boolean isMousePressed() {
         return mousePressed;

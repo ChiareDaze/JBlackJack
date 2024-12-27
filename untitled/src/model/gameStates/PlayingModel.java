@@ -143,4 +143,8 @@ public class PlayingModel extends State {
     public List<Bot> getBotList() {
         return botList;
     }
+
+    public Turns getCurrentTurn(){
+        return currentTurn;
+    }
 }

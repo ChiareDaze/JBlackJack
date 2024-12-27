@@ -6,13 +6,14 @@ import java.io.InputStream;
 
 public class Load {
 
-    public static final String MENU_BUTTONS = "/menuStuff/button_atlas.png";
-    public static final String MENU_BACKGROUND = "/menuStuff/menu_background.png";
-    public static final String PAUSE_BACKGROUND = "/menuStuff/pause_menu.png";
-    public static final String SOUND_BUTTONS = "/menuStuff/sound_button.png";
-    public static final String URM_BUTTONS = "/menuStuff/urm_buttons.png";
-    public static final String BOT_BUTTONS = "/menuStuff/bot_button.png";
-    public static final String BOT_COUNT = "/menuStuff/bot_count.png";
+    public static final String MENU_BUTTONS = "/buttonsStuff/button_atlas.png";
+    public static final String MENU_BACKGROUND = "/buttonsStuff/menu_background.png";
+    public static final String PAUSE_BACKGROUND = "/buttonsStuff/pause_menu.png";
+    public static final String SOUND_BUTTONS = "/buttonsStuff/sound_button.png";
+    public static final String URM_BUTTONS = "/buttonsStuff/urm_buttons.png";
+    public static final String BOT_BUTTONS = "/buttonsStuff/bot_button.png";
+    public static final String BOT_COUNT = "/buttonsStuff/bot_count.png";
+    public static final String PLAYER_BUTTONS = "/buttonsStuff/player_actions.png";
 
     public static BufferedImage ImportImg(String path) {
         BufferedImage img = null;
@@ -41,6 +42,9 @@ public class Load {
             H, D, C, S
         }
 
+        public static String GetNumberBotPath(){
+            return "/buttonsStuff/bot_number.png";
+        }
     }
 
 }

@@ -34,7 +34,6 @@ public class Bot extends Entity implements BotAction {
         }
     }
 
-
     protected void buildHand() {
         ArrayList<CardModel> deck = deckModel.getDeck();
         for (int i = 0; i < 2; i++) {
@@ -44,5 +43,4 @@ public class Bot extends Entity implements BotAction {
             hand.add(card);
         }
     }
-
 }

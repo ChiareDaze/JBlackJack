@@ -22,15 +22,18 @@ public class Game implements Runnable {
     private final PlayingModel playingModel = PlayingModel.getInstance();
     private final PauseOverlay pauseOverlay = new PauseOverlay();
     private final PauseOverlayController pauseOverlayController = new PauseOverlayController();
-    private final PlayingView playingView = PlayingView.getInstance(pauseOverlay);
-    private PlayingController playingController = PlayingController.getInstance(pauseOverlayController);
+    private PlayingController playingController;
+    private final PlayingView playingView = PlayingView.getInstance();
     private MenuModel menuModel = MenuModel.getInstance();
     private MenuView menuView = MenuView.getInstance();
 
     public Game() {
+        playingController = new PlayingController(pauseOverlayController);
         gamePanel = new GamePanel(this);
         gameWindow = new GameWindow(gamePanel);
         gamePanel.requestFocus();
+        playingView.startPauseOverlay(pauseOverlay);
+        playingView.startPlayingController(playingController);
         startGameLoop();
     }
 
@@ -116,5 +119,9 @@ public class Game implements Runnable {
     public void windowFocusLost(){
         if (Gamestate.state == Gamestate.PLAYING){
         }
+    }
+
+    public PlayingController getPlayerController() {
+        return playingController;
     }
 }

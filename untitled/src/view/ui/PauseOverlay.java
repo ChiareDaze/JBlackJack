@@ -22,10 +22,10 @@ public class PauseOverlay {
 
     private void createUrmButtons() {
 
-        int menuX = 205;
-        int replyX = 273;
-        int unpausedX = 340;
-        int bY = 380;
+        int menuX = 405;
+        int replyX = 473;
+        int unpausedX = 540;
+        int bY = 430;
 
         menuB = new UrmButton(menuX, bY,URM_WIDTH, URM_WIDTH, 2);
         replyB = new UrmButton(replyX, bY,URM_WIDTH, URM_WIDTH, 1);
@@ -34,8 +34,8 @@ public class PauseOverlay {
     }
 
     private void createSoundButtons() {
-        musicButton = new SoundButton(335, 215, SOUND_SIZE, 42);
-        sfxButton = new SoundButton(335, 263, SOUND_SIZE, 42);
+        musicButton = new SoundButton(535, 265, SOUND_SIZE, 42);
+        sfxButton = new SoundButton(535, 313, SOUND_SIZE, 42);
     }
 
     private void loadBackground() {
@@ -43,7 +43,7 @@ public class PauseOverlay {
         bgW = background.getWidth();
         bgH = background.getHeight();
         bgX = model.utilz.Constants.WIDTH / 2 - bgW / 2;
-        bgY = 100;
+        bgY = 150;
     }
 
     public void update(){

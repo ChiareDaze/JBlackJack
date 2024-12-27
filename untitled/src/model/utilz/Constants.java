@@ -2,8 +2,8 @@ package model.utilz;
 
 public class Constants {
 
-    public static final int WIDTH = 600;
-    public static final int HEIGHT = 600;
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 700;
 
     public static class UI{
         public static class Buttons{

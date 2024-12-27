@@ -64,7 +64,7 @@ public class CardManagerView {
 
     public void draw (Graphics g){
         syncView();
-        int y = 320;
+        int y = 450;
         int pos = 0;
         for (CardView card : playerHand){
             card.draw(g, pos, y);

@@ -1,7 +1,6 @@
 package view.cards;
 
 import model.cards.CardModel;
-import model.utilz.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,8 +13,8 @@ public class CardView {
     private CardModel cardModel;
     private BufferedImage backImage;
     private BufferedImage frontImage;
-    int cardWidth = 110; //ratio should 1/1.4
-    int cardHeight = 154;
+    int cardWidth = 90; //ratio should 1/1.4
+    int cardHeight = 134;
 
     public CardView(CardModel cardModel){
         this.cardModel = cardModel;
