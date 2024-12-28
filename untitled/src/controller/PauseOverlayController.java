@@ -2,6 +2,7 @@ package controller;
 
 import model.gameStates.Gamestate;
 import model.gameStates.PlayingModel;
+import view.music.MusicManager;
 import view.ui.PauseButton;
 import view.ui.PauseOverlay;
 
@@ -51,6 +52,9 @@ public class PauseOverlayController {
 
         else if (isIn(e, pauseOverlay.getMenuB())){
             if (pauseOverlay.getMenuB().isMousePressed()){
+                MusicManager.getInstance().resetPlayingSong();
+                MusicManager.getInstance().stopPlayingSong();
+                MusicManager.getInstance().playMenuSong();
                 Gamestate.state = Gamestate.MENU;
                 playingModel.unpauseGame();
             }
@@ -65,6 +69,7 @@ public class PauseOverlayController {
 
         else if (isIn(e, pauseOverlay.getUnpausedB())){
             if (pauseOverlay.getUnpausedB().isMousePressed()){
+                MusicManager.getInstance().playPlayingSong();
                 playingModel.unpauseGame();
             }
         }

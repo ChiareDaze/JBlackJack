@@ -4,6 +4,7 @@ import model.gameStates.Gamestate;
 import model.gameStates.MenuModel;
 import model.gameStates.PlayingModel;
 import view.gamestates.MenuView;
+import view.music.MusicManager;
 import view.ui.BotButton;
 import view.ui.MenuButton;
 
@@ -48,8 +49,12 @@ public class MenuController {
     public void mouseReleased(MouseEvent e) {
         for (MenuButton button : menuView.getButtons()) {
             if (isInMenuButton(e,button)){
-                if (button.isMousePressed())
+                if (button.isMousePressed()) {
                     button.applyGameState();
+                    MusicManager.getInstance().resetMenuSong();
+                    MusicManager.getInstance().stopMenuSong();
+                    MusicManager.getInstance().playPlayingSong();
+                }
             }
         }
 

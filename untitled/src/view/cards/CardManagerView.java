@@ -39,8 +39,10 @@ public class CardManagerView {
             playerHand.add(new CardView(card));
         }
 
-        for (CardModel card : playingModel.getDealer().getHand()){
-            dealerHand.add(new CardView(card));
+        ArrayList<CardModel> dealerModelHand = playingModel.getDealer().getHand();
+
+        for (int i = 0; i < dealerModelHand.size(); i++){
+            dealerHand.add(new CardView(dealerModelHand.get(i)));
         }
         
         if (playingModel.getBotList().size() >= 1){
@@ -62,20 +64,58 @@ public class CardManagerView {
         }
     }
 
-    public void draw (Graphics g){
-        syncView();
-        int y = 450;
-        int pos = 0;
-        for (CardView card : playerHand){
-            card.draw(g, pos, y);
-            pos++;
-        }
+    public void drawPlayerHand (Graphics g){
 
-        y = 20;
-        pos = 0;
+        int y1 = 470;
+        int y2 = y1 - 134 - 5;
+        int cardNumber = 0;
+        for (CardView card : playerHand){
+            if (cardNumber < 3) {
+                int x = 25 + (card.cardWidth + 5) * cardNumber;
+                card.draw(g, x, y1);
+            }
+            else {
+                int x = 25 +  (card.cardWidth + 5) * (cardNumber - 3);
+                card.draw(g, x, y2);
+            }
+            cardNumber++;
+        }
+    }
+
+    private void drawDealerHand(Graphics g) {
+        int y1 = 20;
+        int y2 = y1 + 134 + 5;
+        int cardNumber = 0;
         for (CardView card : dealerHand){
-            card.draw(g, pos, y);
+            if (cardNumber < 3) {
+                int x = 25 + (card.cardWidth + 5) * cardNumber;
+                card.draw(g, x, y1);
+            }
+            else {
+                int x = 25 +  (card.cardWidth + 5) * (cardNumber - 3);
+                card.draw(g, x, y2);
+            }
+            cardNumber++;
+        }
+    }
+
+    private void drawBotHand(Graphics g, int botNumber){
+        int y1 = 20;
+        int y2 = y1 + 5;
+        int pos = 0;
+        for (CardView card : dealerHand){
+            if (pos < 3)
+                card.draw(g, pos, y1);
+
+            else
+                card.draw(g, pos - 3, y2);
             pos++;
         }
+    }
+
+    public void draw (Graphics g) {
+        syncView();
+        drawPlayerHand(g);
+        drawDealerHand(g);
     }
 }

@@ -6,7 +6,6 @@ import view.cards.CardManagerView;
 import view.music.MusicManager;
 import view.ui.PauseOverlay;
 import view.ui.PlayerButton;
-
 import java.awt.*;
 
 public class PlayingView {
@@ -19,8 +18,6 @@ public class PlayingView {
     private boolean isSongPlaying = false;
 
     private PlayingView() {
-
-
     }
 
     private void initButtons() {

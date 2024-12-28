@@ -3,6 +3,7 @@ package view.gamestates;
 import model.gameStates.Gamestate;
 import model.gameStates.MenuModel;
 import model.utilz.Constants;
+import view.music.MusicManager;
 import view.ui.BotButton;
 import view.ui.BotDisplay;
 import view.ui.BotNumber;
@@ -22,6 +23,7 @@ public class MenuView {
     private BotButton plus, minus;
     private BotDisplay botDisplay;
     private BotNumber botNumber;
+    private boolean isSongPlaying = false;
 
     private MenuView() {
         loadButtons();
@@ -65,6 +67,10 @@ public class MenuView {
     }
 
     public void draw(Graphics g) {
+        if (!isSongPlaying) {
+            MusicManager.getInstance().playMenuSong();
+            isSongPlaying = true;
+        }
 
         if (menuModel.isProfileSelectionActive()){
             //draw profile selection

@@ -3,6 +3,7 @@ package controller;
 import model.gameStates.PlayingModel;
 import main.GamePanel;
 import view.gamestates.PlayingView;
+import view.music.MusicManager;
 import view.ui.MenuButton;
 import view.ui.PauseOverlay;
 import view.ui.PlayerButton;
@@ -89,6 +90,7 @@ public class PlayingController {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()){
             case KeyEvent.VK_ESCAPE:
+                MusicManager.getInstance().stopPlayingSong();
                 playingModel.setPaused(!playingModel.getPause());
                 break;
             default:

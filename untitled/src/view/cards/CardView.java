@@ -22,11 +22,11 @@ public class CardView {
         loadAnimations();
     }
 
-    public void draw(Graphics g, int pos, int y){
+    public void draw(Graphics g, int x, int y){
         if (cardModel.getIsHidden())
-            g.drawImage(backImage, cardWidth + 25 + (cardWidth + 5) * pos, y, cardWidth, cardHeight, null);
+            g.drawImage(backImage, x, y, cardWidth, cardHeight, null);
         else
-            g.drawImage(frontImage, cardWidth + 25 + (cardWidth + 5) * pos, y, cardWidth, cardHeight,null);
+            g.drawImage(frontImage, x, y, cardWidth, cardHeight,null);
     }
 
     private void loadAnimations(){
