@@ -7,7 +7,6 @@ public class CardModel {
     private String value;
     private CardType type;
     private boolean isHidden = false;
-    int timer = 0;
 
     public CardModel(String value, CardType type) {
         this.value = value;

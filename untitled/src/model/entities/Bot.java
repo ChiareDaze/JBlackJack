@@ -22,7 +22,7 @@ public class Bot extends Entity implements BotAction {
         delayActionTime -= System.currentTimeMillis() - lastActionTime;
         lastActionTime = System.currentTimeMillis();
 
-        if (handSum >= 17){
+        if (handSum >= 21){
             playingModel.nextTurn();
             return;
         }
@@ -36,6 +36,7 @@ public class Bot extends Entity implements BotAction {
 
     protected void buildHand() {
         ArrayList<CardModel> deck = deckModel.getDeck();
+        System.out.println(deck.size());
         for (int i = 0; i < 2; i++) {
             CardModel card = deck.remove(deck.size() - 1);
             handSum += card.getNumericalValue();

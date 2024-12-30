@@ -28,10 +28,11 @@ public class PlayingModel extends State {
     private int numberOfBots = 0;
     private Turns currentTurn = PLAYER;
     private boolean gameFinished = false;
+    private boolean firstUpdate = true;
 
 
     private PlayingModel() {
-        initClasses();
+        menuModel = MenuModel.getInstance();
     }
 
     public static PlayingModel getInstance(){
@@ -41,15 +42,18 @@ public class PlayingModel extends State {
         return instance;
     }
 
-    private void initClasses(){
-        menuModel = MenuModel.getInstance();
-        initBotList();
+    public void firstUpdate(){
+        if (firstUpdate) {
+            initBotList();
+            firstUpdate = false;
+        }
     }
 
     public void update(){
-        if (paused){
+        if (paused)
             return;
-        }
+
+        firstUpdate();
 
         switch (currentTurn){
             case PLAYER -> {}

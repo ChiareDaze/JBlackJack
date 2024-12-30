@@ -1,7 +1,6 @@
 package view.cards;
 
 import model.cards.CardModel;
-import model.cards.DeckModel;
 import model.gameStates.PlayingModel;
 
 import java.awt.*;
@@ -44,22 +43,45 @@ public class CardManagerView {
         for (int i = 0; i < dealerModelHand.size(); i++){
             dealerHand.add(new CardView(dealerModelHand.get(i)));
         }
+
         
-        if (playingModel.getBotList().size() >= 1){
-            for (CardModel card : playingModel.getBot(0).getHand()){
-                bot1Hand.add(new CardView(card));
+        if (playingModel.getBotList().size() == 1){
+            ArrayList<CardModel> bot1ModelHand = playingModel.getBot(0).getHand();
+            for (int i = 0; i < bot1ModelHand.size(); i++){
+                bot1Hand.add(new CardView(bot1ModelHand.get(i)));
             }
         }
 
-        if (playingModel.getBotList().size() >= 2){
-            for (CardModel card : playingModel.getBot(1).getHand()){
-                bot2Hand.add(new CardView(card));
+        if (playingModel.getBotList().size() == 2){
+
+            ArrayList<CardModel> bot1ModelHand = playingModel.getBot(0).getHand();
+            ArrayList<CardModel> bot2ModelHand = playingModel.getBot(1).getHand();
+
+            for (int i = 0; i < bot1ModelHand.size(); i++){
+                bot1Hand.add(new CardView(bot1ModelHand.get(i)));
+            }
+
+            for (int i = 0; i < bot2ModelHand.size(); i++){
+                bot2Hand.add(new CardView(bot2ModelHand.get(i)));
             }
         }
 
-        if (playingModel.getBotList().size() >= 3){
-            for (CardModel card : playingModel.getBot(2).getHand()){
-                bot3Hand.add(new CardView(card));
+        if (playingModel.getBotList().size() == 3){
+
+            ArrayList<CardModel> bot1ModelHand = playingModel.getBot(0).getHand();
+            ArrayList<CardModel> bot2ModelHand = playingModel.getBot(1).getHand();
+            ArrayList<CardModel> bot3ModelHand = playingModel.getBot(2).getHand();
+
+            for (int i = 0; i < bot1ModelHand.size(); i++){
+                bot1Hand.add(new CardView(bot1ModelHand.get(i)));
+            }
+
+            for (int i = 0; i < bot2ModelHand.size(); i++){
+                bot2Hand.add(new CardView(bot2ModelHand.get(i)));
+            }
+
+            for (int i = 0; i < bot3ModelHand.size(); i++){
+                bot3Hand.add(new CardView(bot3ModelHand.get(i)));
             }
         }
     }
@@ -83,7 +105,7 @@ public class CardManagerView {
     }
 
     private void drawDealerHand(Graphics g) {
-        int y1 = 20;
+        int y1 = 40;
         int y2 = y1 + 134 + 5;
         int cardNumber = 0;
         for (CardView card : dealerHand){
@@ -100,16 +122,22 @@ public class CardManagerView {
     }
 
     private void drawBotHand(Graphics g, int botNumber){
-        int y1 = 20;
-        int y2 = y1 + 5;
-        int pos = 0;
-        for (CardView card : dealerHand){
-            if (pos < 3)
-                card.draw(g, pos, y1);
 
-            else
-                card.draw(g, pos - 3, y2);
-            pos++;
+        ArrayList <CardView>  botHand = null;
+
+        switch (botNumber){
+            case 1 -> botHand = bot1Hand;
+            case 2 -> botHand = bot2Hand;
+            case 3 -> botHand = bot3Hand;
+        }
+
+        int x = 600 + 130 * (botNumber - 1);
+        int cardNumber = 0;
+
+        for (CardView card : botHand){
+            int y = 40 + 30 * cardNumber;
+            card.draw(g, x, y);
+            cardNumber++;
         }
     }
 
@@ -117,5 +145,13 @@ public class CardManagerView {
         syncView();
         drawPlayerHand(g);
         drawDealerHand(g);
+
+        int numberOfBots = playingModel.getNumberOfBots();
+
+        if (numberOfBots > 0) {
+            for (int i = 1; i <= playingModel.getNumberOfBots(); i++) {
+                drawBotHand(g, i);
+            }
+        }
     }
 }
