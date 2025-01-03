@@ -3,6 +3,7 @@ package model.entities;
 import model.cards.CardModel;
 import model.cards.DeckModel;
 import model.gameStates.PlayingModel;
+import model.utilz.Constants.EntityNames;
 
 import java.util.ArrayList;
 
@@ -16,9 +17,12 @@ public abstract class Entity {
     protected int aceCount = 0;
     protected long lastActionTime = 0;
     protected long delayActionTime = 700;
+    protected boolean blackJack = false;
+    protected EntityNames entityName;
 
-    public Entity(PlayingModel playingModel) {
+    public Entity(PlayingModel playingModel, EntityNames entityName) {
         this.playingModel = playingModel;
+        this.entityName = entityName;
         buildHand();
     }
 
@@ -38,6 +42,13 @@ public abstract class Entity {
         if (cardModel.isAce()) aceCount++;
         hand.add(cardModel);
         reduceAce();
+    }
+
+    public boolean isBlackJack() {
+        if (hand.get(0).isAce() && hand.get(1).isFigure() || hand.get(0).isFigure() && hand.get(1).isAce()) {
+           blackJack = true;
+        }
+        return blackJack;
     }
 
     public int getAceCount() {

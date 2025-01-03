@@ -1,15 +1,21 @@
 package model.entities;
 
 import model.cards.CardModel;
-import model.cards.DeckModel;
+import model.utilz.Constants.EntityNames;
 import model.gameStates.PlayingModel;
 
 import java.util.ArrayList;
 
 public class Bot extends Entity implements BotAction {
 
-    public Bot(PlayingModel playingModel) {
-        super(playingModel);
+    public Bot(PlayingModel playingModel, int botNumber) {
+        EntityNames botName = null;
+        switch  (botNumber) {
+            case 1 -> botName = EntityNames.BOT1;
+            case 2 -> botName = EntityNames.BOT2;
+            case 3 -> botName = EntityNames.BOT3;
+        }
+        super(playingModel, botName);
     }
 
     public void turn() {
@@ -36,12 +42,12 @@ public class Bot extends Entity implements BotAction {
 
     protected void buildHand() {
         ArrayList<CardModel> deck = deckModel.getDeck();
-        System.out.println(deck.size());
         for (int i = 0; i < 2; i++) {
             CardModel card = deck.remove(deck.size() - 1);
             handSum += card.getNumericalValue();
             if (card.isAce()) aceCount++;
             hand.add(card);
         }
+        isBlackJack();
     }
 }

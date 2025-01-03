@@ -1,5 +1,6 @@
 package model.gameStates;
 
+import model.PointManager;
 import model.cards.DeckModel;
 import main.Game;
 import model.entities.Bot;
@@ -16,7 +17,7 @@ public class PlayingModel extends State {
 
     private static PlayingModel instance;
     protected static Game game;
-
+    private PointManager pointManager;
     private DeckModel deckModel = DeckModel.getInstace();
     private MenuModel menuModel;
 
@@ -27,12 +28,12 @@ public class PlayingModel extends State {
     private List<Bot> botList = new ArrayList<>();
     private int numberOfBots = 0;
     private Turns currentTurn = PLAYER;
-    private boolean gameFinished = false;
     private boolean firstUpdate = true;
 
 
     private PlayingModel() {
         menuModel = MenuModel.getInstance();
+        pointManager = PointManager.getInstance();
     }
 
     public static PlayingModel getInstance(){
@@ -45,6 +46,7 @@ public class PlayingModel extends State {
     public void firstUpdate(){
         if (firstUpdate) {
             initBotList();
+            pointManager.setEntities(player, dealer, botList);
             firstUpdate = false;
         }
     }
@@ -61,7 +63,7 @@ public class PlayingModel extends State {
             case BOT1 -> botList.get(0).turn();
             case BOT2 -> botList.get(1).turn();
             case BOT3 -> botList.get(2).turn();
-            case NONE -> {}
+            case FINISHED -> pointManager.setWinner();
         }
     }
     
@@ -94,18 +96,18 @@ public class PlayingModel extends State {
                 break;
 
             case DEALER:
-                currentTurn = NONE;
+                currentTurn = FINISHED;
                 break;
 
-            case NONE:
-                gameFinished = true;
+            case FINISHED:
+                //
                 break;
         }
     }
 
     public void initBotList(){
         for (int i = 0; i < numberOfBots; i++){
-            botList.add(new Bot(this));
+            botList.add(new Bot(this, i+1));
         }
     }
 
@@ -154,5 +156,9 @@ public class PlayingModel extends State {
 
     public Turns getCurrentTurn(){
         return currentTurn;
+    }
+
+    public boolean isGameFinished(){
+        return currentTurn == FINISHED;
     }
 }

@@ -2,6 +2,7 @@ package view.gamestates;
 
 import controller.PlayingController;
 import model.gameStates.PlayingModel;
+import model.utilz.Constants;
 import view.cards.CardManagerView;
 import view.music.MusicManager;
 import view.ui.PauseOverlay;
@@ -55,6 +56,15 @@ public class PlayingView {
 
         hitButton.draw(g);
         stayButton.draw(g);
+
+        if (playingModel.isGameFinished()) {
+            drawGameFinished(g);
+        }
+    }
+
+    private void drawGameFinished(Graphics g) {
+        g.setColor(new Color(0,0,0,220));
+        g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT);
     }
 
     public void update(){

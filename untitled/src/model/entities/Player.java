@@ -4,12 +4,13 @@ import model.cards.CardModel;
 import model.gameStates.PlayingModel;
 
 import java.util.ArrayList;
+import model.utilz.Constants.EntityNames;
 
 
 public class Player extends Entity {
 
     public Player(PlayingModel playingModel) {
-        super(playingModel);
+        super(playingModel, EntityNames.PLAYER);
     }
 
     protected void buildHand() {
@@ -20,14 +21,11 @@ public class Player extends Entity {
             if (card.isAce()) aceCount++;
             hand.add(card);
         }
+        isBlackJack();
     }
 
     public void hit(){
         addCardToHand();
-    }
-
-    public void stay(){
-
     }
 }
 

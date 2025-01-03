@@ -17,6 +17,10 @@ public class CardModel {
         return value.equals("A");
     }
 
+    public boolean isFigure(){
+        return "JQK".contains(value);
+    }
+
     public CardType getType() {
         return type;
     }

@@ -21,7 +21,11 @@ public class Constants {
     }
 
     public enum Turns{
-        PLAYER, DEALER, BOT1, BOT2, BOT3, NONE;
+        PLAYER, DEALER, BOT1, BOT2, BOT3, FINISHED;
 
+    }
+
+    public enum EntityNames{
+        PLAYER, DEALER, BOT1, BOT2, BOT3;
     }
 }

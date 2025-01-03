@@ -2,12 +2,13 @@ package model.entities;
 
 import model.cards.CardModel;
 import model.gameStates.PlayingModel;
+import model.utilz.Constants.EntityNames;
 
 
 public class Dealer extends Entity implements BotAction {
 
     public Dealer(PlayingModel playingModel) {
-        super(playingModel);
+        super(playingModel, EntityNames.DEALER);
     }
 
     public void turn() {
@@ -41,5 +42,6 @@ public class Dealer extends Entity implements BotAction {
             hand.add(card);
         }
         hand.getFirst().setHidden(true);
+        isBlackJack();
     }
 }
