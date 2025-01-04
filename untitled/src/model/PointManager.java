@@ -6,6 +6,7 @@ import model.entities.Player;
 import model.gameStates.PlayingModel;
 import model.utilz.Constants.EntityNames;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class PointManager {
@@ -108,23 +109,19 @@ public class PointManager {
     public void setWinner() {
 
         if (winners.size() > 0) {
-            System.out.println(winners);
             return;
         }
         blackJackHand();
 
         if (winners.size() > 0) {
-            System.out.println(winners);
             return;
         }
 
         checkTwentyOne();
         if (winners.size() > 0) {
-            System.out.println(winners);
             return;
         }
         checkGreater();
-        System.out.println(winners);
     }
 
     private void checkGreater() {
@@ -148,5 +145,9 @@ public class PointManager {
         if (bot1Sum == maxSum) winners.add(EntityNames.BOT1);
         if (bot2Sum == maxSum) winners.add(EntityNames.BOT2);
         if (bot3Sum == maxSum) winners.add(EntityNames.BOT3);
+    }
+
+    public ArrayList<EntityNames> getWinners() {
+        return winners;
     }
 }

@@ -2,9 +2,9 @@ package view.gamestates;
 
 import controller.PlayingController;
 import model.gameStates.PlayingModel;
-import model.utilz.Constants;
 import view.cards.CardManagerView;
 import view.music.MusicManager;
+import view.ui.GameFinished;
 import view.ui.PauseOverlay;
 import view.ui.PlayerButton;
 import java.awt.*;
@@ -12,6 +12,7 @@ import java.awt.*;
 public class PlayingView {
 
     private PlayingModel playingModel = PlayingModel.getInstance();
+    private GameFinished gameFinished = GameFinished.getInstance();
     private static PlayingView instance;
     private PauseOverlay pauseOverlay;
     private PlayerButton hitButton, stayButton;
@@ -40,6 +41,8 @@ public class PlayingView {
     public void startPlayingController(PlayingController playingController) {
         this.playingController = playingController;
         initButtons();
+
+        gameFinished.startPlayingController(playingController);
     }
 
     public void draw(Graphics g) {
@@ -58,13 +61,8 @@ public class PlayingView {
         stayButton.draw(g);
 
         if (playingModel.isGameFinished()) {
-            drawGameFinished(g);
+            gameFinished.draw(g);
         }
-    }
-
-    private void drawGameFinished(Graphics g) {
-        g.setColor(new Color(0,0,0,220));
-        g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT);
     }
 
     public void update(){
@@ -78,6 +76,10 @@ public class PlayingView {
 
         hitButton.update();
         stayButton.update();
+
+        if (playingModel.isGameFinished()) {
+            gameFinished.update();
+        }
     }
 
     public void resetButtons() {

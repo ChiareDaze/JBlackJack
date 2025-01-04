@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PlayingModel extends State {
+public class PlayingModel {
 
     private static PlayingModel instance;
     protected static Game game;

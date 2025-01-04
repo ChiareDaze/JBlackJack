@@ -1,11 +1,7 @@
 package controller;
 
-import model.gameStates.PlayingModel;
-import main.GamePanel;
-import view.gamestates.PlayingView;
+import model.gameStates.PlayingModel;import view.gamestates.PlayingView;
 import view.music.MusicManager;
-import view.ui.MenuButton;
-import view.ui.PauseOverlay;
 import view.ui.PlayerButton;
 
 import java.awt.event.KeyEvent;
@@ -15,18 +11,24 @@ public class PlayingController {
 
     private PlayingModel playingModel = PlayingModel.getInstance();
     private PauseOverlayController pauseOverlayController;
+    private GameFinishedController gameFinishedController;
     private PlayingView playingView = PlayingView.getInstance();
     private boolean deactiveHitButton = false;
 
 
     public PlayingController(PauseOverlayController pauseOverlayController) {
         this.pauseOverlayController = pauseOverlayController;
-
+        gameFinishedController = new GameFinishedController();
     }
 
     public void mousePressed(MouseEvent e) {
         if (playingModel.getPause()) {
             pauseOverlayController.mousePressed(e);
+            return;
+        }
+
+        if (playingModel.isGameFinished()){
+            gameFinishedController.mousePressed(e);
             return;
         }
 
@@ -43,6 +45,11 @@ public class PlayingController {
     public void mouseReleased(MouseEvent e) {
         if (playingModel.getPause()) {
             pauseOverlayController.mouseReleased(e);
+            return;
+        }
+
+        if (playingModel.isGameFinished()){
+            gameFinishedController.mouseReleased(e);
             return;
         }
 
@@ -69,6 +76,11 @@ public class PlayingController {
     public void mouseMoved(MouseEvent e) {
         if (playingModel.getPause()) {
             pauseOverlayController.mouseMoved(e);
+            return;
+        }
+
+        if (playingModel.isGameFinished()){
+            gameFinishedController.mouseMoved(e);
             return;
         }
 

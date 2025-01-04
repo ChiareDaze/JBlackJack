@@ -1,19 +1,16 @@
 package controller;
 
 import model.gameStates.Gamestate;
-import model.gameStates.MenuModel;
 import model.gameStates.PlayingModel;
 import view.gamestates.MenuView;
 import view.music.MusicManager;
 import view.ui.BotButton;
 import view.ui.MenuButton;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class MenuController {
 
-    private MenuModel menuModel = MenuModel.getInstance();
     private MenuView menuView = MenuView.getInstance();
     private PlayingModel playingModel = PlayingModel.getInstance();
     private static MenuController instance;
@@ -116,5 +113,4 @@ public class MenuController {
     public boolean isInBotButton(MouseEvent e, BotButton bb){
         return bb.getBounds().contains(e.getX(), e.getY());
     }
-
 }

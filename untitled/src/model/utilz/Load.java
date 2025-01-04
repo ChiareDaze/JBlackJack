@@ -14,6 +14,7 @@ public class Load {
     public static final String BOT_BUTTONS = "/buttonsStuff/bot_button.png";
     public static final String BOT_COUNT = "/buttonsStuff/bot_count.png";
     public static final String PLAYER_BUTTONS = "/buttonsStuff/player_actions.png";
+    public static final String END_BUTTONS = "/buttonsStuff/game_finished.png";
 
     public static BufferedImage ImportImg(String path) {
         BufferedImage img = null;

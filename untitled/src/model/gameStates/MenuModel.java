@@ -1,6 +1,6 @@
 package model.gameStates;
 
-public class MenuModel extends State{
+public class MenuModel {
 
     private static MenuModel instance;
 
