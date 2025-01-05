@@ -4,15 +4,17 @@ import controller.PlayingController;
 import model.gameStates.PlayingModel;
 import view.cards.CardManagerView;
 import view.music.MusicManager;
-import view.ui.GameFinished;
-import view.ui.PauseOverlay;
-import view.ui.PlayerButton;
+import view.ui.*;
+
 import java.awt.*;
+
+import static model.utilz.Constants.PauseButtons.SOUND_SIZE;
 
 public class PlayingView {
 
     private PlayingModel playingModel = PlayingModel.getInstance();
     private GameFinished gameFinished = GameFinished.getInstance();
+    private SelectProfile selectProfile = SelectProfile.getInstance();
     private static PlayingView instance;
     private PauseOverlay pauseOverlay;
     private PlayerButton hitButton, stayButton;
@@ -51,6 +53,11 @@ public class PlayingView {
             isSongPlaying = true;
         }
 
+        if (playingModel.getSelectProfile()){
+            selectProfile.draw(g);
+            return;
+        }
+
         CardManagerView.getInstance().draw(g);
 
         if (playingModel.getPause()) {
@@ -66,6 +73,11 @@ public class PlayingView {
     }
 
     public void update(){
+        if (playingModel.getSelectProfile()){
+            selectProfile.update();
+            return;
+        }
+
         if (!playingModel.getPause()){
             pauseOverlay.update();
         }

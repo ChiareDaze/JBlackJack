@@ -22,6 +22,7 @@ public class PlayingModel {
     private MenuModel menuModel;
 
     private boolean paused = false;
+    private boolean selectProfile = true;
 
     private Player player = new Player(this);
     private Dealer dealer = new Dealer(this);
@@ -52,7 +53,7 @@ public class PlayingModel {
     }
 
     public void update(){
-        if (paused)
+        if (paused || selectProfile)
             return;
 
         firstUpdate();
@@ -160,5 +161,13 @@ public class PlayingModel {
 
     public boolean isGameFinished(){
         return currentTurn == FINISHED;
+    }
+
+    public void setSelectProfile(boolean selectProfile){
+        this.selectProfile = selectProfile;
+    }
+
+    public boolean getSelectProfile(){
+        return selectProfile;
     }
 }

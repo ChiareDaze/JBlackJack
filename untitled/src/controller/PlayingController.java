@@ -3,6 +3,7 @@ package controller;
 import model.gameStates.PlayingModel;import view.gamestates.PlayingView;
 import view.music.MusicManager;
 import view.ui.PlayerButton;
+import view.ui.SelectProfile;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -10,6 +11,7 @@ import java.awt.event.MouseEvent;
 public class PlayingController {
 
     private PlayingModel playingModel = PlayingModel.getInstance();
+    private SelectProfileController selectProfileController = SelectProfileController.getInstance();
     private PauseOverlayController pauseOverlayController;
     private GameFinishedController gameFinishedController;
     private PlayingView playingView = PlayingView.getInstance();
@@ -22,6 +24,11 @@ public class PlayingController {
     }
 
     public void mousePressed(MouseEvent e) {
+        if (playingModel.getSelectProfile()) {
+            selectProfileController.mousePressed(e);
+            return;
+        }
+
         if (playingModel.getPause()) {
             pauseOverlayController.mousePressed(e);
             return;
@@ -43,6 +50,11 @@ public class PlayingController {
     }
 
     public void mouseReleased(MouseEvent e) {
+        if (playingModel.getSelectProfile()) {
+            selectProfileController.mouseReleased(e);
+            return;
+        }
+
         if (playingModel.getPause()) {
             pauseOverlayController.mouseReleased(e);
             return;
@@ -74,6 +86,11 @@ public class PlayingController {
     }
 
     public void mouseMoved(MouseEvent e) {
+        if (playingModel.getSelectProfile()) {
+            selectProfileController.mouseMoved(e);
+            return;
+        }
+
         if (playingModel.getPause()) {
             pauseOverlayController.mouseMoved(e);
             return;
@@ -107,6 +124,9 @@ public class PlayingController {
                 break;
             default:
                 break;
+        }
+        if (playingModel.getSelectProfile()) {
+            selectProfileController.keyPressed(e);
         }
     }
 

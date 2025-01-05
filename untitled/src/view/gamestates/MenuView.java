@@ -8,7 +8,6 @@ import view.ui.BotButton;
 import view.ui.BotDisplay;
 import view.ui.BotNumber;
 import view.ui.MenuButton;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import static model.utilz.Constants.PauseButtons.SOUND_SIZE;

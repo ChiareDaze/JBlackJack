@@ -7,7 +7,7 @@ import java.io.InputStream;
 public class Load {
 
     public static final String MENU_BUTTONS = "/buttonsStuff/button_atlas.png";
-    public static final String MENU_BACKGROUND = "/buttonsStuff/menu_background.png";
+    public static final String  MENU_BACKGROUND = "/buttonsStuff/menu_background.png";
     public static final String PAUSE_BACKGROUND = "/buttonsStuff/pause_menu.png";
     public static final String SOUND_BUTTONS = "/buttonsStuff/sound_button.png";
     public static final String URM_BUTTONS = "/buttonsStuff/urm_buttons.png";
@@ -15,6 +15,8 @@ public class Load {
     public static final String BOT_COUNT = "/buttonsStuff/bot_count.png";
     public static final String PLAYER_BUTTONS = "/buttonsStuff/player_actions.png";
     public static final String END_BUTTONS = "/buttonsStuff/game_finished.png";
+    public static final String ARROW_BUTTONS = "/buttonsStuff/arrow_buttons.png";
+    public static final String SELECT_PROFILE_BUTTONS = "/buttonsStuff/select_add_buttons.png";
 
     public static BufferedImage ImportImg(String path) {
         BufferedImage img = null;
