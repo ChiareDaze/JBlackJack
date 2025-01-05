@@ -10,8 +10,10 @@ import java.awt.*;
 public class GameFinished {
     private static GameFinished instance;
     private PlayingController playingController;
+    private ScoreBoard scoreBoard = ScoreBoard.getInstance();
     private GameFinishedButtons quitButton;
     private GameFinishedButtons scoreButton;
+    private boolean scoreBoardActive = false;
 
     private GameFinished() {
         initButtons();
@@ -44,6 +46,14 @@ public class GameFinished {
         g.setColor(new Color(0,0,0,220));
         g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT);
 
+        quitButton.draw(g);
+        scoreButton.draw(g);
+
+        if (scoreBoardActive) {
+            scoreBoard.draw(g);
+            return;
+        }
+
         if (PointManager.getInstance().getWinners().contains(EntityNames.PLAYER)) {
             if (PointManager.getInstance().getWinners().size() == 1) {
                 drawPlayerWin(g);
@@ -53,9 +63,6 @@ public class GameFinished {
             }
         }
         else drawPlayerLose(g);
-
-        quitButton.draw(g);
-        scoreButton.draw(g);
     }
 
     private void drawPlayerWin(Graphics g) {
@@ -114,5 +121,13 @@ public class GameFinished {
 
     public GameFinishedButtons getScoreButton() {
         return scoreButton;
+    }
+
+    public boolean isScoreBoardActive() {
+        return scoreBoardActive;
+    }
+
+    public void setScoreBoardActive(boolean scoreBoardActive) {
+        this.scoreBoardActive = scoreBoardActive;
     }
 }

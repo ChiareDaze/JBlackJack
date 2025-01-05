@@ -71,7 +71,9 @@ public class SelectProfileController {
 
         if (isInPlayAddButton(e, add)) {
             if (add.isMousePressed()) {
-                selectProfile.setProfileCreation(true);
+                if (!selectProfile.isProfileCreation())
+                    selectProfile.setProfileCreation(true);
+                else selectProfile.setProfileCreation(false);
             }
         }
 

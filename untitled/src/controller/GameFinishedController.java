@@ -2,12 +2,15 @@ package controller;
 
 import view.ui.GameFinished;
 import view.ui.GameFinishedButtons;
+import view.ui.ScoreBoard;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class GameFinishedController {
 
     private GameFinished gameFinished = GameFinished.getInstance();
+    private ScoreBoard scoreBoard = ScoreBoard.getInstance();
 
 
     public void mousePressed(MouseEvent e) {
@@ -61,20 +64,17 @@ public class GameFinishedController {
         }
     }
 
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    public void keyReleased(KeyEvent e) {
-
-    }
-
     public void quitButtonPressed(){
         System.exit(0);
     }
 
     public void scoreButtonPressed(){
-
+        if (gameFinished.isScoreBoardActive()){
+            gameFinished.setScoreBoardActive(false);
+        } else {
+            scoreBoard.updateScores();
+            gameFinished.setScoreBoardActive(true);
+        }
     }
 
     public boolean isIn(MouseEvent e, GameFinishedButtons gb){

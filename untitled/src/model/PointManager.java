@@ -4,9 +4,9 @@ import model.entities.Bot;
 import model.entities.Dealer;
 import model.entities.Player;
 import model.gameStates.PlayingModel;
+import model.profiles.ProfilesManager;
 import model.utilz.Constants.EntityNames;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class PointManager {
@@ -18,6 +18,7 @@ public class PointManager {
     private Bot bot2;
     private Bot bot3;
     private ArrayList<EntityNames> winners = new ArrayList<>();
+    private ProfilesManager profilesManager = ProfilesManager.getInstance();
 
     private PointManager() {
 
@@ -122,6 +123,7 @@ public class PointManager {
             return;
         }
         checkGreater();
+        checkIfPlayerWins();
     }
 
     private void checkGreater() {
@@ -149,5 +151,11 @@ public class PointManager {
 
     public ArrayList<EntityNames> getWinners() {
         return winners;
+    }
+
+    public void checkIfPlayerWins(){
+        if (winners.contains(EntityNames.PLAYER)) {
+            profilesManager.increaseWins();
+        }
     }
 }

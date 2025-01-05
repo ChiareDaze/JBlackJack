@@ -95,4 +95,7 @@ public class ProfilesManager {
     }
 
 
+    public ArrayList<Profile> getProfiles() {
+        return profiles;
+    }
 }
