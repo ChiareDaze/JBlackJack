@@ -8,6 +8,10 @@ import java.awt.image.BufferedImage;
 import static model.utilz.Constants.UI.Buttons.B_HEIGHT;
 import static model.utilz.Constants.UI.Buttons.B_WIDTH;
 
+/**
+ * The GameFinishedButtons class represents the buttons displayed on the game finished screen.
+ * It handles the button's state, appearance, and interactions.
+ */
 public class GameFinishedButtons {
     private int xPos, yPos, rowIndex, index;
     private int xOffsetCenter = B_WIDTH / 2;
@@ -16,7 +20,15 @@ public class GameFinishedButtons {
     private Rectangle bounds;
     private PlayingController playingController;
 
-    public GameFinishedButtons (int xPos, int yPos, int rowIndex, PlayingController playingController){
+    /**
+     * Constructs a GameFinishedButtons object with the specified position, row index, and playing controller.
+     *
+     * @param xPos the x-coordinate of the button
+     * @param yPos the y-coordinate of the button
+     * @param rowIndex the row index of the button images
+     * @param playingController the playing controller associated with the button
+     */
+    public GameFinishedButtons(int xPos, int yPos, int rowIndex, PlayingController playingController) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.rowIndex = rowIndex;
@@ -26,6 +38,9 @@ public class GameFinishedButtons {
         initBounds();
     }
 
+    /**
+     * Loads the images for the button states (normal, mouse over, and pressed).
+     */
     private void loadImages() {
         imgs = new BufferedImage[3];
         BufferedImage temp = Load.ImportImg(Load.END_BUTTONS);
@@ -34,41 +49,75 @@ public class GameFinishedButtons {
         }
     }
 
+    /**
+     * Initializes the bounds of the button.
+     */
     private void initBounds() {
         bounds = new Rectangle(xPos - xOffsetCenter, yPos, B_WIDTH, B_HEIGHT);
     }
 
-    public void draw(java.awt.Graphics g){
-        g.drawImage(imgs[index], xPos - xOffsetCenter, yPos, B_WIDTH,  B_HEIGHT, null);
+    /**
+     * Draws the button on the given Graphics context.
+     *
+     * @param g the Graphics context to draw on
+     */
+    public void draw(java.awt.Graphics g) {
+        g.drawImage(imgs[index], xPos - xOffsetCenter, yPos, B_WIDTH, B_HEIGHT, null);
     }
 
-    public void update(){
+    /**
+     * Updates the state of the button based on mouse interactions.
+     */
+    public void update() {
         index = 0;
-        if (mouseOver){
+        if (mouseOver) {
             index = 1;
         }
-        if (mousePressed){
+        if (mousePressed) {
             index = 2;
         }
     }
 
+    /**
+     * Returns whether the mouse is pressing the button.
+     *
+     * @return true if the mouse is pressing the button, false otherwise
+     */
     public boolean isMousePressed() {
         return mousePressed;
     }
 
+    /**
+     * Sets whether the mouse is over the button.
+     *
+     * @param mouseOver true if the mouse is over the button, false otherwise
+     */
     public void setMouseOver(boolean mouseOver) {
         this.mouseOver = mouseOver;
     }
 
+    /**
+     * Sets whether the mouse is pressing the button.
+     *
+     * @param mousePressed true if the mouse is pressing the button, false otherwise
+     */
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
     }
 
-    public Rectangle getBounds(){
+    /**
+     * Returns the bounds of the button.
+     *
+     * @return the bounds of the button
+     */
+    public Rectangle getBounds() {
         return bounds;
     }
 
-    public void resetBools(){
+    /**
+     * Resets the mouse interaction states of the button.
+     */
+    public void resetBools() {
         mouseOver = false;
         mousePressed = false;
     }

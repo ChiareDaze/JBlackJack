@@ -7,6 +7,10 @@ import java.io.*;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * The MusicManager class is responsible for managing and playing various background music tracks in the game.
+ * It implements the Observer interface to react to changes in the game state.
+ */
 public class MusicManager implements Observer {
 
     private static MusicManager instance;
@@ -15,9 +19,18 @@ public class MusicManager implements Observer {
     private Clip winningSong;
     private Clip losingSong;
 
+    /**
+     * Private constructor to prevent instantiation from outside the class.
+     */
     private MusicManager() {
     }
 
+    /**
+     * Returns the singleton instance of the MusicManager class.
+     * If the instance is null, it creates a new instance.
+     *
+     * @return the singleton instance of MusicManager
+     */
     public static MusicManager getInstance(){
         if(instance == null){
             instance = new MusicManager();
@@ -25,6 +38,10 @@ public class MusicManager implements Observer {
         return instance;
     }
 
+    /**
+     * Plays the background music for the playing state.
+     * If the music is not already loaded, it loads the music file and starts playing it in a loop.
+     */
     public void playPlayingSong(){
         if(playingSong == null){
             try {
@@ -46,6 +63,10 @@ public class MusicManager implements Observer {
         playingSong.start();
     }
 
+    /**
+     * Plays the background music for the menu state.
+     * If the music is not already loaded, it loads the music file and starts playing it in a loop.
+     */
     public void playMenuSong() {
         if (menuSong == null) {
             try {
@@ -67,6 +88,10 @@ public class MusicManager implements Observer {
         menuSong.start();
     }
 
+    /**
+     * Plays the losing music.
+     * If the music is not already loaded, it loads the music file and starts playing it.
+     */
     private void losingSong() {
         if (losingSong == null) {
             try {
@@ -88,6 +113,10 @@ public class MusicManager implements Observer {
         losingSong.start();
     }
 
+    /**
+     * Plays the winning music.
+     * If the music is not already loaded, it loads the music file and starts playing it.
+     */
     private void winningSong() {
         if (winningSong == null) {
             try {
@@ -109,22 +138,41 @@ public class MusicManager implements Observer {
         winningSong.start();
     }
 
+    /**
+     * Stops the playing song.
+     */
     public void stopPlayingSong(){
         playingSong.stop();
     }
 
+    /**
+     * Stops the menu song.
+     */
     public void stopMenuSong(){
         menuSong.stop();
     }
 
+    /**
+     * Resets the playing song to the beginning.
+     */
     public void resetPlayingSong(){
         playingSong.setFramePosition(0);
     }
 
+    /**
+     * Resets the menu song to the beginning.
+     */
     public void resetMenuSong(){
         menuSong.setFramePosition(0);
     }
 
+    /**
+     * Updates the sound effects based on the game state.
+     * If the player wins, it plays the winning song, otherwise it plays the losing song.
+     *
+     * @param o the observable object
+     * @param arg an argument passed to the notifyObservers method
+     */
     @Override
     public void update(Observable o, Object arg) {
         PointManager pointManager = (PointManager) o;
