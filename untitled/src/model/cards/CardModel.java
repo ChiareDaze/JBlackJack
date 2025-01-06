@@ -45,4 +45,9 @@ public class CardModel {
     public void setHidden(boolean hidden) {
         isHidden = hidden;
     }
+
+    @Override
+    public String toString() {
+        return value + "-" + type;
+    }
 }

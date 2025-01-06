@@ -42,6 +42,7 @@ public class Bot extends Entity implements BotAction {
 
     protected void buildHand() {
         ArrayList<CardModel> deck = deckModel.getDeck();
+        handSum = 0;
         for (int i = 0; i < 2; i++) {
             CardModel card = deck.remove(deck.size() - 1);
             handSum += card.getNumericalValue();

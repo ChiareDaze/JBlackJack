@@ -54,15 +54,26 @@ public class GameFinished {
             return;
         }
 
-        if (PointManager.getInstance().getWinners().contains(EntityNames.PLAYER)) {
-            if (PointManager.getInstance().getWinners().size() == 1) {
-                drawPlayerWin(g);
-            }
-            else {
-                drawPlayerTie(g);
-            }
+        if (PointManager.getInstance().isDealerOver()) {
+            drawDealerOver(g);
+            writeWinners(g);
         }
-        else drawPlayerLose(g);
+        else {
+            if (PointManager.getInstance().getWinners().contains(EntityNames.PLAYER)) {
+                if (PointManager.getInstance().getWinners().size() == 1) {
+                    drawPlayerWin(g);
+                } else {
+                    drawPlayerTie(g);
+                }
+            } else drawPlayerLose(g);
+        }
+    }
+
+    private void drawDealerOver(Graphics g) {
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 50));
+        String text = "The dealer is over 21";
+        g.drawString(text, getCenteredTextPosition(g, text), 300);
     }
 
     private void drawPlayerWin(Graphics g) {
@@ -93,7 +104,7 @@ public class GameFinished {
         String winners = "The winners is: ";
 
         if (PointManager.getInstance().getWinners().size() > 1) {
-            winners = "The winner are: ";
+            winners = "The winners are: ";
         }
 
         for (EntityNames winner : PointManager.getInstance().getWinners()) {

@@ -19,6 +19,7 @@ public class PointManager {
     private Bot bot3;
     private ArrayList<EntityNames> winners = new ArrayList<>();
     private ProfilesManager profilesManager = ProfilesManager.getInstance();
+    private boolean dealerOver = false;
 
     private PointManager() {
 
@@ -72,7 +73,7 @@ public class PointManager {
                 winners.add(EntityNames.BOT3);
             }
         }
-        System.out.println(winners.size());
+        checkIfPlayerWins();
     }
 
     public void checkTwentyOne(){
@@ -80,14 +81,25 @@ public class PointManager {
         int dealerSum = dealer.getHandSum();
         int bot1Sum = 0, bot2Sum = 0, bot3Sum = 0;
 
-        if (bot1 != null) bot1Sum = bot1.getHandSum();
-        if (bot2 != null) bot1Sum = bot2.getHandSum();
-        if (bot3 != null) bot1Sum = bot3.getHandSum();
+        System.out.println("Player sum: " + playerSum);
+        System.out.println("Dealer sum: " + dealerSum);
+
+        if (bot1 != null) {
+            bot1Sum = bot1.getHandSum();
+            System.out.println("Bot1 sum: " + bot1Sum);
+        }
+        if (bot2 != null){
+            bot2Sum = bot2.getHandSum();
+            System.out.println("Bot2 sum: " + bot2Sum);
+            }
+        if (bot3 != null) {
+            bot3Sum = bot3.getHandSum();
+            System.out.println("Bot2 sum: " + bot3Sum);
+        }
 
 
         if (playerSum == 21) {
             winners.add(EntityNames.PLAYER);
-
         }
 
         if (dealerSum == 21) {
@@ -105,9 +117,15 @@ public class PointManager {
         if (bot3Sum == 21) {
             winners.add(EntityNames.BOT3);
         }
+        checkIfPlayerWins();
     }
 
     public void setWinner() {
+
+        if (winners.size() > 0) {
+            return;
+        }
+        checkIfDealerOver();
 
         if (winners.size() > 0) {
             return;
@@ -117,24 +135,36 @@ public class PointManager {
         if (winners.size() > 0) {
             return;
         }
-
         checkTwentyOne();
+
+
         if (winners.size() > 0) {
             return;
         }
         checkGreater();
-        checkIfPlayerWins();
     }
 
     private void checkGreater() {
+
         int playerSum = player.getHandSum();
         int dealerSum = dealer.getHandSum();
         int bot1Sum = 0, bot2Sum = 0, bot3Sum = 0;
 
-        if (bot1 != null) bot1Sum = bot1.getHandSum();
-        if (bot2 != null) bot1Sum = bot2.getHandSum();
-        if (bot3 != null) bot1Sum = bot3.getHandSum();
+        System.out.println("Player sum: " + playerSum);
+        System.out.println("Dealer sum: " + dealerSum);
 
+        if (bot1 != null) {
+            bot1Sum = bot1.getHandSum();
+            System.out.println("Bot1 sum: " + bot1Sum);
+        }
+        if (bot2 != null){
+            bot2Sum = bot2.getHandSum();
+            System.out.println("Bot2 sum: " + bot2Sum);
+        }
+        if (bot3 != null) {
+            bot3Sum = bot3.getHandSum();
+            System.out.println("Bot2 sum: " + bot3Sum);
+        }
         if (playerSum > 21) playerSum = 0;
         if (dealerSum > 21) dealerSum = 0;
         if (bot1Sum > 21) bot1Sum = 0;
@@ -147,6 +177,30 @@ public class PointManager {
         if (bot1Sum == maxSum) winners.add(EntityNames.BOT1);
         if (bot2Sum == maxSum) winners.add(EntityNames.BOT2);
         if (bot3Sum == maxSum) winners.add(EntityNames.BOT3);
+
+        if (maxSum == 0) {
+            winners.remove(EntityNames.DEALER);
+        }
+        checkIfPlayerWins();
+    }
+
+    public void checkIfDealerOver() {
+        if (dealer.getHandSum() > 21) {
+
+            dealerOver = true;
+            winners.add(EntityNames.PLAYER);
+
+            if (bot1 != null) {
+                winners.add(EntityNames.BOT1);
+            }
+            if (bot2 != null) {
+                winners.add(EntityNames.BOT2);
+            }
+            if (bot3 != null) {
+                winners.add(EntityNames.BOT3);
+            }
+        }
+        checkIfPlayerWins();
     }
 
     public ArrayList<EntityNames> getWinners() {
@@ -157,5 +211,9 @@ public class PointManager {
         if (winners.contains(EntityNames.PLAYER)) {
             profilesManager.increaseWins();
         }
+    }
+
+    public boolean isDealerOver() {
+        return dealerOver;
     }
 }

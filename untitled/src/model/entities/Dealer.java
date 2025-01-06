@@ -12,7 +12,6 @@ public class Dealer extends Entity implements BotAction {
     }
 
     public void turn() {
-
         hand.getFirst().setHidden(false);
 
         if (lastActionTime == 0)

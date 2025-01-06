@@ -67,8 +67,8 @@ public class ProfilesManager {
 
     public void defaultProfile(){
         addProfile(new Profile("Player"));
-        addProfile(new Profile("Gerard Way"));
-        addProfile(new Profile("Frank Iero"));
+        addProfile(new Profile("Yoshi"));
+        addProfile(new Profile("King Dedede"));
     }
 
     public void nextProfile() {

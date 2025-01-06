@@ -28,7 +28,7 @@ public abstract class Entity {
 
     protected abstract void buildHand();
 
-    public int reduceAce(){
+    public int reduceAce() {
         while (handSum > 21 && aceCount > 0) {
             handSum -= 10;
             aceCount--;
@@ -37,7 +37,7 @@ public abstract class Entity {
     }
 
     public void addCardToHand() {
-        CardModel cardModel = deck.remove(deck.size()-1);
+        CardModel cardModel = deck.remove(deck.size() - 1);
         handSum += cardModel.getNumericalValue();
         if (cardModel.isAce()) aceCount++;
         hand.add(cardModel);
@@ -46,7 +46,7 @@ public abstract class Entity {
 
     public boolean isBlackJack() {
         if (hand.get(0).isAce() && hand.get(1).isFigure() || hand.get(0).isFigure() && hand.get(1).isAce()) {
-           blackJack = true;
+            blackJack = true;
         }
         return blackJack;
     }
