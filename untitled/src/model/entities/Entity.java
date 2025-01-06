@@ -51,10 +51,6 @@ public abstract class Entity {
         return blackJack;
     }
 
-    public int getAceCount() {
-        return aceCount;
-    }
-
     public int getHandSum() {
         return handSum;
     }

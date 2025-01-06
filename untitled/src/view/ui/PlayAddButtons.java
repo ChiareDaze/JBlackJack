@@ -1,7 +1,6 @@
 package view.ui;
 
-import controller.PlayingController;
-import model.utilz.Load;
+import view.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

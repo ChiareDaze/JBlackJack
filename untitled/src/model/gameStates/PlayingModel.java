@@ -1,8 +1,7 @@
 package model.gameStates;
 
 import model.PointManager;
-import model.cards.DeckModel;
-import main.Game;
+
 import model.entities.Bot;
 import model.entities.Dealer;
 import model.entities.Player;
@@ -16,11 +15,7 @@ import java.util.List;
 public class PlayingModel {
 
     private static PlayingModel instance;
-    protected static Game game;
     private PointManager pointManager;
-    private DeckModel deckModel = DeckModel.getInstace();
-    private MenuModel menuModel;
-
     private boolean paused = false;
     private boolean selectProfile = true;
 
@@ -33,7 +28,6 @@ public class PlayingModel {
 
 
     private PlayingModel() {
-        menuModel = MenuModel.getInstance();
         pointManager = PointManager.getInstance();
     }
 

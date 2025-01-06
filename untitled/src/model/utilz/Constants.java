@@ -12,6 +12,10 @@ public class Constants {
         }
     }
 
+    public enum CardType{
+        H, D, C, S
+    }
+
     public static class PauseButtons{
         public static final int SOUND_SIZE = 42;
     }

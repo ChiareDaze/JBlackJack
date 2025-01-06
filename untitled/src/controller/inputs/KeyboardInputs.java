@@ -5,11 +5,11 @@ import java.awt.event.KeyListener;
 import controller.MenuController;
 import controller.PlayingController;
 import model.gameStates.Gamestate;
-import main.GamePanel;
+import view.GamePanel;
 
 public class KeyboardInputs implements KeyListener {
 
-    private final main.GamePanel gamePanel;
+    private final GamePanel gamePanel;
     private final PlayingController playingController;
 
     public KeyboardInputs(GamePanel gamePanel, PlayingController playingController) {

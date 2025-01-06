@@ -1,4 +1,6 @@
-package model.utilz;
+package view;
+
+import model.utilz.Constants.CardType;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -42,10 +44,6 @@ public class Load {
 
         public static String GetBackCardPath(){
             return "/cardsImgs/BACK.png";
-        }
-
-        public enum CardType{
-            H, D, C, S
         }
 
         public static String GetNumberBotPath(){

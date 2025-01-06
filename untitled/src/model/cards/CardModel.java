@@ -1,7 +1,6 @@
 package model.cards;
 
-import static model.utilz.Load.Images.*;
-
+import model.utilz.Constants.CardType;
 
 public class CardModel {
     private String value;

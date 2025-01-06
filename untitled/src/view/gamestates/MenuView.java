@@ -1,8 +1,8 @@
 package view.gamestates;
 
 import model.gameStates.Gamestate;
-import model.gameStates.MenuModel;
 import model.utilz.Constants;
+import view.Load;
 import view.music.MusicManager;
 import view.ui.BotButton;
 import view.ui.BotDisplay;
@@ -18,7 +18,6 @@ public class MenuView {
     private MenuButton[] buttons = new MenuButton[3];
     private BufferedImage background;
     private int menuX, menuY, menuHeight, menuWidth;
-    private MenuModel menuModel = MenuModel.getInstance();
     private BotButton plus, minus;
     private BotDisplay botDisplay;
     private BotNumber botNumber;
@@ -37,7 +36,7 @@ public class MenuView {
     }
 
     private void loadBackground() {
-        background = model.utilz.Load.ImportImg(model.utilz.Load.MENU_BACKGROUND);
+        background = Load.ImportImg(Load.MENU_BACKGROUND);
         menuWidth = background.getWidth();
         menuHeight = background.getHeight();
         menuX = Constants.WIDTH / 2 - menuWidth / 2;
@@ -69,15 +68,6 @@ public class MenuView {
         if (!isSongPlaying) {
             MusicManager.getInstance().playMenuSong();
             isSongPlaying = true;
-        }
-
-        if (menuModel.isProfileSelectionActive()){
-            //draw profile selection
-            return;
-        }
-        if (menuModel.isProfileRanckingActive()){
-            //draw profile ranking
-            return;
         }
 
         g.drawImage(background, menuX, menuY, menuWidth, menuHeight, null);

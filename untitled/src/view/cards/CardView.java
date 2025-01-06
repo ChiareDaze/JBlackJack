@@ -5,9 +5,9 @@ import model.cards.CardModel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static model.utilz.Load.Images.GetBackCardPath;
-import static model.utilz.Load.Images.GetFrontCardPath;
-import static model.utilz.Load.ImportImg;
+import static view.Load.Images.GetBackCardPath;
+import static view.Load.Images.GetFrontCardPath;
+import static view.Load.ImportImg;
 
 public class CardView {
     private CardModel cardModel;

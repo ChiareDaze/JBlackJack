@@ -1,7 +1,7 @@
 package view.ui;
 
 import model.gameStates.PlayingModel;
-import model.utilz.Load;
+import view.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -25,7 +25,7 @@ public class BotDisplay {
     }
 
     private void loadBotImgs() {
-        BufferedImage temp = model.utilz.Load.ImportImg(Load.BOT_COUNT);
+        BufferedImage temp = Load.ImportImg(Load.BOT_COUNT);
         displayImgs = new BufferedImage[4];
 
         for (int i = 0; i < displayImgs.length; i++) {

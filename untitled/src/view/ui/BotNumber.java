@@ -1,6 +1,6 @@
 package view.ui;
 
-import model.utilz.Load;
+import view.Load;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

@@ -1,5 +1,7 @@
 package view.ui;
 
+import view.Load;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import static model.utilz.Constants.URMButtons.*;
@@ -39,7 +41,7 @@ public class PauseOverlay {
     }
 
     private void loadBackground() {
-        background = model.utilz.Load.ImportImg(model.utilz.Load.PAUSE_BACKGROUND);
+        background = Load.ImportImg(Load.PAUSE_BACKGROUND);
         bgW = background.getWidth();
         bgH = background.getHeight();
         bgX = model.utilz.Constants.WIDTH / 2 - bgW / 2;

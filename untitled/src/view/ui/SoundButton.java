@@ -1,5 +1,7 @@
 package view.ui;
 
+import view.Load;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import static model.utilz.Constants.PauseButtons.*;
@@ -18,7 +20,7 @@ public class SoundButton extends PauseButton {
     }
 
     private void loadSoundImgs() {
-        BufferedImage temp = model.utilz.Load.ImportImg(model.utilz.Load.SOUND_BUTTONS);
+        BufferedImage temp = Load.ImportImg(Load.SOUND_BUTTONS);
         soundImgs = new BufferedImage[2][3];
         for (int j = 0; j < soundImgs.length; j++)
             for (int i = 0; i < soundImgs[j].length; i++) {

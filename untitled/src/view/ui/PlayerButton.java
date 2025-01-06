@@ -3,7 +3,7 @@ package view.ui;
 import controller.PlayingController;
 import model.gameStates.PlayingModel;
 import model.utilz.Constants;
-import model.utilz.Load;
+import view.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

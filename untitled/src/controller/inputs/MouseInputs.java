@@ -3,8 +3,7 @@ package controller.inputs;
 import controller.MenuController;
 import controller.PlayingController;
 import model.gameStates.Gamestate;
-import model.gameStates.MenuModel;
-import main.GamePanel;
+import view.GamePanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -12,7 +11,6 @@ import java.awt.event.MouseMotionListener;
 public class MouseInputs implements MouseListener, MouseMotionListener {
 
     private GamePanel gamePanel;
-    private MenuModel menuModel = MenuModel.getInstance();
     private MenuController menuController = MenuController.getInstance();
     private PlayingController playingController;
 

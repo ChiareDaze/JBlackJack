@@ -1,6 +1,6 @@
 package view.ui;
 
-import model.utilz.Load;
+import view.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -20,7 +20,7 @@ public class UrmButton extends PauseButton{
     }
 
     private void loadImgs() {
-        BufferedImage temp = model.utilz.Load.ImportImg(Load.URM_BUTTONS);
+        BufferedImage temp = Load.ImportImg(Load.URM_BUTTONS);
         imgs = new BufferedImage[3];
 
         for (int i = 0; i < imgs.length; i++) {

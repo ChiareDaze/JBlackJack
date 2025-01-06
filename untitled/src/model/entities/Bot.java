@@ -1,10 +1,11 @@
 package model.entities;
 
+import java.util.ArrayList;
+
 import model.cards.CardModel;
 import model.utilz.Constants.EntityNames;
 import model.gameStates.PlayingModel;
 
-import java.util.ArrayList;
 
 public class Bot extends Entity implements BotAction {
 

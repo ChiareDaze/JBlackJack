@@ -1,6 +1,6 @@
 package view.ui;
 
-import model.utilz.Load;
+import view.Load;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import static model.utilz.Constants.PauseButtons.SOUND_SIZE;
@@ -30,7 +30,7 @@ public class SelectProfileArrowButton {
     }
 
     private void loadBotImgs() {
-        BufferedImage temp = model.utilz.Load.ImportImg(Load.ARROW_BUTTONS);
+        BufferedImage temp = Load.ImportImg(Load.ARROW_BUTTONS);
         botImgs = new BufferedImage[3];
 
         for (int i = 0; i < botImgs.length; i++) {

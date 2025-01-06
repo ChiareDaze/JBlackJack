@@ -1,11 +1,10 @@
 package view;
 
-import model.utilz.Load;
-import model.utilz.Load.Images.CardType;
+import model.utilz.Constants.CardType;
 
 public class Utilz {
 
-    public static int GetCardSpriteIndex(String value, Load.Images.CardType type) {
+    public static int GetCardSpriteIndex(String value, CardType type) {
         int index = 0;
         switch (value) {
             case "A":

@@ -2,7 +2,7 @@ package view.ui;
 
 import model.profiles.ProfilesManager;
 import model.utilz.Constants;
-import model.utilz.Load;
+import view.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

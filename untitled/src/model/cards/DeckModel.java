@@ -1,11 +1,11 @@
 package model.cards;
 
-import model.utilz.Load.Images.CardType;
-
 import java.util.ArrayList;
 import java.util.Random;
 
-import static model.utilz.Load.Images.CardType.*;
+import model.utilz.Constants.CardType;
+import static model.utilz.Constants.CardType.*;
+
 
 public class DeckModel {
 

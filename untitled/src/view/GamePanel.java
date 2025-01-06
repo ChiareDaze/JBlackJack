@@ -1,12 +1,11 @@
-package main;
+package view;
 
-import controller.PlayingController;
 import controller.inputs.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import controller.Game;
 import model.utilz.Constants;
 
 public class GamePanel extends JPanel {
