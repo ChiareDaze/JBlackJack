@@ -20,6 +20,7 @@ public class PointManager {
     private ArrayList<EntityNames> winners = new ArrayList<>();
     private ProfilesManager profilesManager = ProfilesManager.getInstance();
     private boolean dealerOver = false;
+    private boolean alreadyControlled = false;
 
     private PointManager() {
 
@@ -122,26 +123,40 @@ public class PointManager {
 
     public void setWinner() {
 
+        if (alreadyControlled){
+            return;
+        }
+
         if (winners.size() > 0) {
+            alreadyControlled = true;
+            profilesManager.increaseGames();
             return;
         }
         checkIfDealerOver();
 
         if (winners.size() > 0) {
+            alreadyControlled = true;
+            profilesManager.increaseGames();
             return;
         }
         blackJackHand();
 
         if (winners.size() > 0) {
+            alreadyControlled = true;
+            profilesManager.increaseGames();
             return;
         }
         checkTwentyOne();
 
 
         if (winners.size() > 0) {
+            alreadyControlled = true;
+            profilesManager.increaseGames();
             return;
         }
         checkGreater();
+        profilesManager.increaseGames();
+        alreadyControlled = true;
     }
 
     private void checkGreater() {

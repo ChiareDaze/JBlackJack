@@ -60,15 +60,20 @@ public class ProfilesManager {
         }
     }
 
+    public void increaseGames() {
+        getCurrentProfile().increaseGames();
+        saveProfiles();
+    }
+
     public void increaseWins() {
         getCurrentProfile().increaseWins();
         saveProfiles();
     }
 
     public void defaultProfile(){
-        addProfile(new Profile("Player"));
-        addProfile(new Profile("Yoshi"));
-        addProfile(new Profile("King Dedede"));
+        addProfile(new Profile("Shy Guy",0));
+        addProfile(new Profile("King Dedede",1));
+        addProfile(new Profile("Yoshi",2));
     }
 
     public void nextProfile() {

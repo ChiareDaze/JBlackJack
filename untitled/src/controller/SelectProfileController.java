@@ -10,10 +10,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class SelectProfileController {
+
+    private static SelectProfileController instance;
     private SelectProfile selectProfile = SelectProfile.getInstance();
     private PlayingModel playingModel = PlayingModel.getInstance();
     private ProfilesManager profilesManager = ProfilesManager.getInstance();
-    private static SelectProfileController instance;
 
 
     private SelectProfileController() {
@@ -131,6 +132,14 @@ public class SelectProfileController {
                     selectProfile.setCreationName(selectProfile.getCreationName() + key);
             }
         }
+
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+            selectProfile.increaseCreationAvatarIndex();
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_LEFT){
+            selectProfile.decreaseCreationAvatarIndex();
+        }
     }
 
     public boolean isInPlayAddButton(MouseEvent e, PlayAddButtons pa){
@@ -146,7 +155,7 @@ public class SelectProfileController {
         if (!selectProfile.isProfileCreation()) playingModel.setSelectProfile(false);
         else {
             if (!profilesManager.doesProfileExist(selectProfile.getCreationName())) {
-                profilesManager.addProfile(new Profile(selectProfile.getCreationName()));
+                profilesManager.addProfile(new Profile(selectProfile.getCreationName(), selectProfile.getCreationAvatarIndex()));
                 profilesManager.selectProfile(selectProfile.getCreationName());
                 playingModel.setSelectProfile(false);
             }

@@ -36,7 +36,8 @@ public class ScoreBoard {
         for (Profile p : scores) {
             String name = p.getName();
             String score = String.valueOf(p.getNumberOfWins());
-            String txt = position + "° " + name + " numeber of wins: " + score;
+            String loses = String.valueOf(p.getNumberOfGames() - p.getNumberOfWins());
+            String txt = position + "° " + name + " games: " + p.getNumberOfGames() + ", wins: "+ score + ", loses: " + loses + ", level: " + p.getLevel();
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial", Font.BOLD, 20));
             g.drawString(txt, getCenteredTextPosition(g, txt), 200 + scores.indexOf(p) * 50);

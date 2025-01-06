@@ -17,6 +17,9 @@ public class Load {
     public static final String END_BUTTONS = "/buttonsStuff/game_finished.png";
     public static final String ARROW_BUTTONS = "/buttonsStuff/arrow_buttons.png";
     public static final String SELECT_PROFILE_BUTTONS = "/buttonsStuff/select_add_buttons.png";
+    public static final String AVATAR_0 = "/avatars/0.jpg";
+    public static final String AVATAR_1 = "/avatars/1.jpg";
+    public static final String AVATAR_2 = "/avatars/2.jpg";
 
     public static BufferedImage ImportImg(String path) {
         BufferedImage img = null;

@@ -15,13 +15,11 @@ public class PlayAddButtons {
     private BufferedImage[] imgs;
     private boolean mouseOver, mousePressed;
     private Rectangle bounds;
-    private PlayingController playingController;
 
-    public PlayAddButtons (int xPos, int yPos, int rowIndex, PlayingController playingController){
+    public PlayAddButtons (int xPos, int yPos, int rowIndex){
         this.xPos = xPos;
         this.yPos = yPos;
         this.rowIndex = rowIndex;
-        this.playingController = playingController;
 
         loadImages();
         initBounds();
