@@ -7,8 +7,17 @@ import model.utilz.Constants.EntityNames;
 import model.gameStates.PlayingModel;
 
 
+/**
+ * The Bot class represents a bot entity in the game, which performs actions based on the game state.
+ */
 public class Bot extends Entity implements BotAction {
 
+    /**
+     * Constructs a Bot object with the specified playing model and bot number.
+     *
+     * @param playingModel the playing model associated with the bot
+     * @param botNumber the number of the bot (1, 2, or 3)
+     */
     public Bot(PlayingModel playingModel, int botNumber) {
         EntityNames botName = null;
         switch  (botNumber) {
@@ -19,6 +28,9 @@ public class Bot extends Entity implements BotAction {
         super(playingModel, botName);
     }
 
+    /**
+     * Performs the bot's turn, including revealing the first card, checking hand sum, and adding cards to the hand.
+     */
     public void turn() {
 
         hand.getFirst().setHidden(false);
@@ -41,6 +53,9 @@ public class Bot extends Entity implements BotAction {
         }
     }
 
+    /**
+     * Builds the bot's initial hand by drawing two cards from the deck and calculating the hand sum.
+     */
     protected void buildHand() {
         ArrayList<CardModel> deck = deckModel.getDeck();
         handSum = 0;

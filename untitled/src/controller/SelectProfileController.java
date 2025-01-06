@@ -9,6 +9,9 @@ import view.ui.SelectProfileArrowButton;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+/**
+ * The SelectProfileController class handles the mouse and keyboard events for the profile selection screen.
+ */
 public class SelectProfileController {
 
     private static SelectProfileController instance;
@@ -16,10 +19,17 @@ public class SelectProfileController {
     private PlayingModel playingModel = PlayingModel.getInstance();
     private ProfilesManager profilesManager = ProfilesManager.getInstance();
 
-
+    /**
+     * Private constructor to prevent instantiation.
+     */
     private SelectProfileController() {
     }
 
+    /**
+     * Returns the singleton instance of the SelectProfileController.
+     *
+     * @return the singleton instance of the SelectProfileController
+     */
     public static SelectProfileController getInstance(){
         if(instance == null){
             instance = new SelectProfileController();
@@ -27,8 +37,12 @@ public class SelectProfileController {
         return instance;
     }
 
+    /**
+     * Handles the mouse pressed event.
+     *
+     * @param e the MouseEvent to be processed
+     */
     public void mousePressed(MouseEvent e) {
-
         SelectProfileArrowButton right = selectProfile.getLeft();
         SelectProfileArrowButton left = selectProfile.getRight();
 
@@ -50,16 +64,18 @@ public class SelectProfileController {
         }
     }
 
+    /**
+     * Handles the mouse released event.
+     *
+     * @param e the MouseEvent to be processed
+     */
     public void mouseReleased(MouseEvent e) {
-
-
         SelectProfileArrowButton left = selectProfile.getLeft();
         SelectProfileArrowButton right = selectProfile.getRight();
 
         if (isInArrowsButton(e, left)){
             if (left.isMousePressed())
                 profilesManager.previousProfile();
-
         }
 
         if (isInArrowsButton(e, right)){
@@ -87,8 +103,12 @@ public class SelectProfileController {
         selectProfile.resetButtons();
     }
 
+    /**
+     * Handles the mouse moved event.
+     *
+     * @param e the MouseEvent to be processed
+     */
     public void mouseMoved(MouseEvent e) {
-
         SelectProfileArrowButton left = selectProfile.getLeft();
         SelectProfileArrowButton right = selectProfile.getRight();
 
@@ -118,6 +138,11 @@ public class SelectProfileController {
         }
     }
 
+    /**
+     * Handles the key pressed event.
+     *
+     * @param e the KeyEvent to be processed
+     */
     public void keyPressed(KeyEvent e) {
         if (!selectProfile.isProfileCreation())
             return;
@@ -142,16 +167,32 @@ public class SelectProfileController {
         }
     }
 
+    /**
+     * Checks if the mouse event is within the bounds of the specified play/add button.
+     *
+     * @param e the MouseEvent to be checked
+     * @param pa the PlayAddButtons to be checked
+     * @return true if the mouse event is within the bounds of the button, false otherwise
+     */
     public boolean isInPlayAddButton(MouseEvent e, PlayAddButtons pa){
         return pa.getBounds().contains(e.getX(), e.getY());
     }
 
+    /**
+     * Checks if the mouse event is within the bounds of the specified arrow button.
+     *
+     * @param e the MouseEvent to be checked
+     * @param sp the SelectProfileArrowButton to be checked
+     * @return true if the mouse event is within the bounds of the button, false otherwise
+     */
     public boolean isInArrowsButton(MouseEvent e, SelectProfileArrowButton sp){
         return sp.getBounds().contains(e.getX(), e.getY());
     }
 
+    /**
+     * Handles the action when the play button is pressed.
+     */
     public void playButtonPressed() {
-
         if (!selectProfile.isProfileCreation()) playingModel.setSelectProfile(false);
         else {
             if (!profilesManager.doesProfileExist(selectProfile.getCreationName())) {

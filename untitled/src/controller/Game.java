@@ -12,6 +12,9 @@ import view.ui.PauseOverlay;
 
 import java.awt.*;
 
+/**
+ * The Game class implements the Runnable interface to manage the game loop and game state.
+ */
 public class Game implements Runnable {
 
     private final GameWindow gameWindow;
@@ -29,6 +32,9 @@ public class Game implements Runnable {
     private final MusicManager musicManager = MusicManager.getInstance();
     private final PointManager pointManager = PointManager.getInstance();
 
+    /**
+     * Constructs a Game object and initializes the game components.
+     */
     public Game() {
         playingController = new PlayingController(pauseOverlayController);
         gamePanel = new GamePanel(this);
@@ -38,17 +44,23 @@ public class Game implements Runnable {
         playingView.startPlayingController(playingController);
         startGameLoop();
 
-        //observer observable pattern
+        // observer observable pattern
         pointManager.addObserver(musicManager);
     }
 
+    /**
+     * Starts the game loop in a new thread.
+     */
     private void startGameLoop() {
         thread = new Thread(this);
         thread.start();
     }
 
-    public void update(){
-        switch (Gamestate.state){
+    /**
+     * Updates the game state based on the current game state.
+     */
+    public void update() {
+        switch (Gamestate.state) {
             case MENU:
                 menuView.update();
                 break;
@@ -61,8 +73,13 @@ public class Game implements Runnable {
         }
     }
 
-    public void draw(Graphics g){
-        switch (Gamestate.state){
+    /**
+     * Draws the game components based on the current game state.
+     *
+     * @param g the Graphics object to draw on
+     */
+    public void draw(Graphics g) {
+        switch (Gamestate.state) {
             case MENU:
                 menuView.draw(g);
                 break;
@@ -78,9 +95,11 @@ public class Game implements Runnable {
         }
     }
 
+    /**
+     * The main game loop that updates and repaints the game at a fixed rate.
+     */
     @Override
     public void run() {
-
         double timePerFrame = 1000000000.0 / FPS_SET;
         double timePerUpdate = 1000000000.0 / UPS_SET;
         long previousTime = System.nanoTime();
@@ -98,7 +117,7 @@ public class Game implements Runnable {
             deltaF += (currentTime - previousTime) / timePerFrame;
             previousTime = currentTime;
 
-            if (deltaU >= 1){
+            if (deltaU >= 1) {
                 update();
                 updates++;
                 deltaU--;
@@ -115,16 +134,23 @@ public class Game implements Runnable {
                 System.out.println("FPS: " + frames + " | " + updates);
                 frames = 0;
                 updates = 0;
-
             }
         }
     }
 
-    public void windowFocusLost(){
-        if (Gamestate.state == Gamestate.PLAYING){
+    /**
+     * Handles the event when the game window loses focus.
+     */
+    public void windowFocusLost() {
+        if (Gamestate.state == Gamestate.PLAYING) {
         }
     }
 
+    /**
+     * Returns the PlayingController associated with the game.
+     *
+     * @return the PlayingController
+     */
     public PlayingController getPlayerController() {
         return playingController;
     }

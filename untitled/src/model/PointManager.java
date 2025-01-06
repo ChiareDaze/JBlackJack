@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+/**
+ * The PointManager class manages the points and game state for the players, dealer, and bots.
+ * It is implemented as a singleton and extends Observable to notify observers of changes.
+ */
 public class PointManager extends Observable {
 
     private static PointManager instance;
@@ -24,10 +28,19 @@ public class PointManager extends Observable {
     private boolean alreadyControlled = false;
     private boolean playerWins = false;
 
+    /**
+     * Private constructor to prevent instantiation from outside the class.
+     */
     private PointManager() {
 
     }
 
+    /**
+     * Returns the singleton instance of the PointManager class.
+     * If the instance is null, it creates a new instance.
+     *
+     * @return the singleton instance of PointManager
+     */
     public static PointManager getInstance() {
         if (instance == null) {
             instance = new PointManager();
@@ -35,6 +48,13 @@ public class PointManager extends Observable {
         return instance;
     }
 
+    /**
+     * Sets the player, dealer, and bot entities.
+     *
+     * @param player the player entity
+     * @param dealer the dealer entity
+     * @param botList the list of bot entities
+     */
     public void setEntities(Player player, Dealer dealer, List<Bot> botList) {
         this.player = player;
         this.dealer = dealer;
@@ -53,6 +73,9 @@ public class PointManager extends Observable {
         }
     }
 
+    /**
+     * Checks if any entity has a blackjack hand and adds them to the winners list.
+     */
     public void blackJackHand(){
         if (PlayingModel.getInstance().isGameFinished()) {
 
@@ -79,6 +102,9 @@ public class PointManager extends Observable {
         checkIfPlayerWins();
     }
 
+    /**
+     * Checks if any entity has a hand sum of twenty-one and adds them to the winners list.
+     */
     public void checkTwentyOne(){
         int playerSum = player.getHandSum();
         int dealerSum = dealer.getHandSum();
@@ -89,7 +115,7 @@ public class PointManager extends Observable {
         }
         if (bot2 != null){
             bot2Sum = bot2.getHandSum();
-            }
+        }
         if (bot3 != null) {
             bot3Sum = bot3.getHandSum();
         }
@@ -119,6 +145,9 @@ public class PointManager extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Determines the winner of the game.
+     */
     public void setWinner() {
 
         if (alreadyControlled){
@@ -157,6 +186,9 @@ public class PointManager extends Observable {
         alreadyControlled = true;
     }
 
+    /**
+     * Checks which entity has the highest hand sum and adds them to the winners list.
+     */
     private void checkGreater() {
 
         int playerSum = player.getHandSum();
@@ -193,6 +225,9 @@ public class PointManager extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Checks if the dealer's hand sum exceeds twenty-one and adds the player and bots to the winners list.
+     */
     public void checkIfDealerOver() {
         if (dealer.getHandSum() > 21) {
 
@@ -214,10 +249,18 @@ public class PointManager extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Returns the list of winners.
+     *
+     * @return the list of winners
+     */
     public ArrayList<EntityNames> getWinners() {
         return winners;
     }
 
+    /**
+     * Checks if the player is among the winners and updates the player's win count.
+     */
     public void checkIfPlayerWins(){
         if (winners.contains(EntityNames.PLAYER)) {
             playerWins = true;
@@ -225,10 +268,20 @@ public class PointManager extends Observable {
         }
     }
 
+    /**
+     * Returns whether the dealer's hand sum exceeds twenty-one.
+     *
+     * @return true if the dealer's hand sum exceeds twenty-one, false otherwise
+     */
     public boolean isDealerOver() {
         return dealerOver;
     }
 
+    /**
+     * Returns whether the player is among the winners.
+     *
+     * @return true if the player is among the winners, false otherwise
+     */
     public boolean isPlayerWins() {
         return playerWins;
     }

@@ -8,49 +8,48 @@ import view.ui.PauseOverlay;
 
 import java.awt.event.MouseEvent;
 
+/**
+ * The PauseOverlayController class handles the mouse events for the pause overlay screen.
+ */
 public class PauseOverlayController {
 
     private PauseOverlay pauseOverlay = new PauseOverlay();
     private PlayingModel playingModel = PlayingModel.getInstance();
 
-
+    /**
+     * Handles the mouse pressed event.
+     *
+     * @param e the MouseEvent to be processed
+     */
     public void mousePressed(MouseEvent e) {
         if (isIn(e, pauseOverlay.getMusicButton())){
             pauseOverlay.getMusicButton().setMousePressed(true);
-        }
-
-        else if (isIn(e, pauseOverlay.getSfxButton())){
+        } else if (isIn(e, pauseOverlay.getSfxButton())){
             pauseOverlay.getSfxButton().setMousePressed(true);
-        }
-
-        else if (isIn(e, pauseOverlay.getMenuB())){
+        } else if (isIn(e, pauseOverlay.getMenuB())){
             pauseOverlay.getMenuB().setMousePressed(true);
-        }
-
-        else if (isIn(e, pauseOverlay.getReplyB())){
+        } else if (isIn(e, pauseOverlay.getReplyB())){
             pauseOverlay.getReplyB().setMousePressed(true);
-        }
-
-        else if (isIn(e, pauseOverlay.getUnpausedB())){
+        } else if (isIn(e, pauseOverlay.getUnpausedB())){
             pauseOverlay.getUnpausedB().setMousePressed(true);
         }
     }
 
+    /**
+     * Handles the mouse released event.
+     *
+     * @param e the MouseEvent to be processed
+     */
     public void mouseReleased(MouseEvent e) {
-
         if (isIn(e, pauseOverlay.getMusicButton())){
             if (pauseOverlay.getMusicButton().isMousePressed()){
                 pauseOverlay.getMusicButton().setMuted(!pauseOverlay.getMusicButton().isMuted());
             }
-        }
-
-        else if (isIn(e, pauseOverlay.getSfxButton())){
+        } else if (isIn(e, pauseOverlay.getSfxButton())){
             if (pauseOverlay.getSfxButton().isMousePressed()){
                 pauseOverlay.getSfxButton().setMuted(!pauseOverlay.getSfxButton().isMuted());
             }
-        }
-
-        else if (isIn(e, pauseOverlay.getMenuB())){
+        } else if (isIn(e, pauseOverlay.getMenuB())){
             if (pauseOverlay.getMenuB().isMousePressed()){
                 MusicManager.getInstance().resetPlayingSong();
                 MusicManager.getInstance().stopPlayingSong();
@@ -58,16 +57,11 @@ public class PauseOverlayController {
                 Gamestate.state = Gamestate.MENU;
                 playingModel.unpauseGame();
             }
-        }
-
-        else if (isIn(e, pauseOverlay.getReplyB())){
+        } else if (isIn(e, pauseOverlay.getReplyB())){
             if (pauseOverlay.getReplyB().isMousePressed()){
-                //Gamestate.state = Gamestate.PLAYING;
                 System.out.println("reply!!");
             }
-        }
-
-        else if (isIn(e, pauseOverlay.getUnpausedB())){
+        } else if (isIn(e, pauseOverlay.getUnpausedB())){
             if (pauseOverlay.getUnpausedB().isMousePressed()){
                 MusicManager.getInstance().playPlayingSong();
                 playingModel.unpauseGame();
@@ -79,9 +73,13 @@ public class PauseOverlayController {
         pauseOverlay.getMenuB().resetBools();
         pauseOverlay.getReplyB().resetBools();
         pauseOverlay.getUnpausedB().resetBools();
-
     }
 
+    /**
+     * Handles the mouse moved event.
+     *
+     * @param e the MouseEvent to be processed
+     */
     public void mouseMoved(MouseEvent e) {
         pauseOverlay.getMusicButton().setMouseOver(false);
         pauseOverlay.getSfxButton().setMouseOver(false);
@@ -91,24 +89,24 @@ public class PauseOverlayController {
 
         if (isIn(e, pauseOverlay.getMusicButton())){
             pauseOverlay.getMusicButton().setMouseOver(true);
-        }
-
-        else if (isIn(e, pauseOverlay.getSfxButton())){
+        } else if (isIn(e, pauseOverlay.getSfxButton())){
             pauseOverlay.getSfxButton().setMouseOver(true);
-        }
-
-        else if (isIn(e, pauseOverlay.getMenuB())){
+        } else if (isIn(e, pauseOverlay.getMenuB())){
             pauseOverlay.getMenuB().setMouseOver(true);
-        }
-
-        else if (isIn(e, pauseOverlay.getReplyB())){
+        } else if (isIn(e, pauseOverlay.getReplyB())){
             pauseOverlay.getReplyB().setMouseOver(true);
-        }
-
-        else if (isIn(e, pauseOverlay.getUnpausedB())){;
+        } else if (isIn(e, pauseOverlay.getUnpausedB())){
             pauseOverlay.getUnpausedB().setMouseOver(true);
         }
     }
+
+    /**
+     * Checks if the mouse event is within the bounds of the specified button.
+     *
+     * @param e the MouseEvent to be checked
+     * @param button the PauseButton to be checked
+     * @return true if the mouse event is within the bounds of the button, false otherwise
+     */
     private boolean isIn(MouseEvent e, PauseButton button){
         return (button.getBounds().contains(e.getX(), e.getY()));
     }

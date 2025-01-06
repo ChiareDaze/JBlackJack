@@ -9,15 +9,26 @@ import view.ui.MenuButton;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+/**
+ * The MenuController class handles the mouse and keyboard events for the menu screen.
+ */
 public class MenuController {
 
     private MenuView menuView = MenuView.getInstance();
     private PlayingModel playingModel = PlayingModel.getInstance();
     private static MenuController instance;
 
+    /**
+     * Private constructor to prevent instantiation.
+     */
     private MenuController() {
     }
 
+    /**
+     * Returns the singleton instance of the MenuController.
+     *
+     * @return the singleton instance of the MenuController
+     */
     public static MenuController getInstance(){
         if(instance == null){
             instance = new MenuController();
@@ -25,6 +36,11 @@ public class MenuController {
         return instance;
     }
 
+    /**
+     * Handles the mouse pressed event.
+     *
+     * @param e the MouseEvent to be processed
+     */
     public void mousePressed(MouseEvent e) {
         for (MenuButton button : menuView.getButtons()) {
             if (isInMenuButton(e,button)){
@@ -43,6 +59,11 @@ public class MenuController {
             minus.setMousePressed(true);
     }
 
+    /**
+     * Handles the mouse released event.
+     *
+     * @param e the MouseEvent to be processed
+     */
     public void mouseReleased(MouseEvent e) {
         for (MenuButton button : menuView.getButtons()) {
             if (isInMenuButton(e,button)){
@@ -71,6 +92,11 @@ public class MenuController {
         menuView.resetButtons();
     }
 
+    /**
+     * Handles the mouse moved event.
+     *
+     * @param e the MouseEvent to be processed
+     */
     public void mouseMoved(MouseEvent e) {
         for (MenuButton button : menuView.getButtons())
             button.setMouseOver(false);
@@ -96,20 +122,44 @@ public class MenuController {
         }
     }
 
+    /**
+     * Handles the key pressed event.
+     *
+     * @param e the KeyEvent to be processed
+     */
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER){
             Gamestate.state = Gamestate.PLAYING;
         }
     }
 
+    /**
+     * Handles the key released event.
+     *
+     * @param e the KeyEvent to be processed
+     */
     public void keyReleased(KeyEvent e) {
 
     }
 
+    /**
+     * Checks if the mouse event is within the bounds of the specified menu button.
+     *
+     * @param e the MouseEvent to be checked
+     * @param mb the MenuButton to be checked
+     * @return true if the mouse event is within the bounds of the button, false otherwise
+     */
     public boolean isInMenuButton(MouseEvent e, MenuButton mb){
         return mb.getBounds().contains(e.getX(), e.getY());
     }
 
+    /**
+     * Checks if the mouse event is within the bounds of the specified bot button.
+     *
+     * @param e the MouseEvent to be checked
+     * @param bb the BotButton to be checked
+     * @return true if the mouse event is within the bounds of the button, false otherwise
+     */
     public boolean isInBotButton(MouseEvent e, BotButton bb){
         return bb.getBounds().contains(e.getX(), e.getY());
     }
