@@ -22,6 +22,8 @@ public class Load {
     public static final String AVATAR_0 = "/avatars/0.jpg";
     public static final String AVATAR_1 = "/avatars/1.jpg";
     public static final String AVATAR_2 = "/avatars/2.jpg";
+    public static final String WIN_SOUND = "/music/win.wav";
+    public static final String LOSE_SOUND = "/music/lose.wav";
 
     public static BufferedImage ImportImg(String path) {
         BufferedImage img = null;

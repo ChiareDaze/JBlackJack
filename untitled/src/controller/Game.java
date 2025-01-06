@@ -1,5 +1,6 @@
 package controller;
 
+import model.PointManager;
 import model.gameStates.Gamestate;
 import model.gameStates.PlayingModel;
 import view.GamePanel;
@@ -25,7 +26,8 @@ public class Game implements Runnable {
     private PlayingController playingController;
     private final PlayingView playingView = PlayingView.getInstance();
     private MenuView menuView = MenuView.getInstance();
-    private MusicManager musicManager = MusicManager.getInstance();
+    private final MusicManager musicManager = MusicManager.getInstance();
+    private final PointManager pointManager = PointManager.getInstance();
 
     public Game() {
         playingController = new PlayingController(pauseOverlayController);
@@ -35,6 +37,9 @@ public class Game implements Runnable {
         playingView.startPauseOverlay(pauseOverlay);
         playingView.startPlayingController(playingController);
         startGameLoop();
+
+        //observer observable pattern
+        pointManager.addObserver(musicManager);
     }
 
     private void startGameLoop() {

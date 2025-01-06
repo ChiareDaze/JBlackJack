@@ -8,8 +8,9 @@ import model.profiles.ProfilesManager;
 import model.utilz.Constants.EntityNames;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class PointManager {
+public class PointManager extends Observable {
 
     private static PointManager instance;
     private Player player;
@@ -21,6 +22,7 @@ public class PointManager {
     private ProfilesManager profilesManager = ProfilesManager.getInstance();
     private boolean dealerOver = false;
     private boolean alreadyControlled = false;
+    private boolean playerWins = false;
 
     private PointManager() {
 
@@ -82,20 +84,14 @@ public class PointManager {
         int dealerSum = dealer.getHandSum();
         int bot1Sum = 0, bot2Sum = 0, bot3Sum = 0;
 
-        System.out.println("Player sum: " + playerSum);
-        System.out.println("Dealer sum: " + dealerSum);
-
         if (bot1 != null) {
             bot1Sum = bot1.getHandSum();
-            System.out.println("Bot1 sum: " + bot1Sum);
         }
         if (bot2 != null){
             bot2Sum = bot2.getHandSum();
-            System.out.println("Bot2 sum: " + bot2Sum);
             }
         if (bot3 != null) {
             bot3Sum = bot3.getHandSum();
-            System.out.println("Bot2 sum: " + bot3Sum);
         }
 
 
@@ -119,6 +115,8 @@ public class PointManager {
             winners.add(EntityNames.BOT3);
         }
         checkIfPlayerWins();
+        setChanged();
+        notifyObservers();
     }
 
     public void setWinner() {
@@ -165,20 +163,14 @@ public class PointManager {
         int dealerSum = dealer.getHandSum();
         int bot1Sum = 0, bot2Sum = 0, bot3Sum = 0;
 
-        System.out.println("Player sum: " + playerSum);
-        System.out.println("Dealer sum: " + dealerSum);
-
         if (bot1 != null) {
             bot1Sum = bot1.getHandSum();
-            System.out.println("Bot1 sum: " + bot1Sum);
         }
         if (bot2 != null){
             bot2Sum = bot2.getHandSum();
-            System.out.println("Bot2 sum: " + bot2Sum);
         }
         if (bot3 != null) {
             bot3Sum = bot3.getHandSum();
-            System.out.println("Bot2 sum: " + bot3Sum);
         }
         if (playerSum > 21) playerSum = 0;
         if (dealerSum > 21) dealerSum = 0;
@@ -197,6 +189,8 @@ public class PointManager {
             winners.remove(EntityNames.DEALER);
         }
         checkIfPlayerWins();
+        setChanged();
+        notifyObservers();
     }
 
     public void checkIfDealerOver() {
@@ -216,6 +210,8 @@ public class PointManager {
             }
         }
         checkIfPlayerWins();
+        setChanged();
+        notifyObservers();
     }
 
     public ArrayList<EntityNames> getWinners() {
@@ -224,11 +220,16 @@ public class PointManager {
 
     public void checkIfPlayerWins(){
         if (winners.contains(EntityNames.PLAYER)) {
+            playerWins = true;
             profilesManager.increaseWins();
         }
     }
 
     public boolean isDealerOver() {
         return dealerOver;
+    }
+
+    public boolean isPlayerWins() {
+        return playerWins;
     }
 }
