@@ -124,7 +124,7 @@ public class SelectProfile {
      */
     private void drawProfileCreation(Graphics g) {
         String title = "Enter Profile Name";
-        String description = "Press the arrows keys to change the avatar";
+        String description = "Press the arrow keys to change the avatar";
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString(title, getCenteredTextPosition(g, title), 300);
