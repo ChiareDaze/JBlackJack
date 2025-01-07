@@ -77,7 +77,7 @@ public class MenuButton {
     }
 
     public void drawCreator(Graphics g){
-        String creator = "By ChiareDaze";
+        String creator = "By Chiara Petrucci";
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 10));
         g.drawString(creator, getCenteredTextPosition(g,creator), 100);

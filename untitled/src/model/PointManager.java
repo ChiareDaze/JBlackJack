@@ -26,7 +26,6 @@ public class PointManager extends Observable {
     private ProfilesManager profilesManager = ProfilesManager.getInstance();
     private boolean dealerOver = false;
     private boolean alreadyControlled = false;
-    private boolean playerWins = false;
 
     /**
      * Private constructor to prevent instantiation from outside the class.
@@ -120,7 +119,6 @@ public class PointManager extends Observable {
             bot3Sum = bot3.getHandSum();
         }
 
-
         if (playerSum == 21) {
             winners.add(EntityNames.PLAYER);
         }
@@ -141,8 +139,6 @@ public class PointManager extends Observable {
             winners.add(EntityNames.BOT3);
         }
         checkIfPlayerWins();
-        setChanged();
-        notifyObservers();
     }
 
     /**
@@ -156,6 +152,8 @@ public class PointManager extends Observable {
 
         if (winners.size() > 0) {
             alreadyControlled = true;
+            setChanged();
+            notifyObservers();
             profilesManager.increaseGames();
             return;
         }
@@ -163,6 +161,8 @@ public class PointManager extends Observable {
 
         if (winners.size() > 0) {
             alreadyControlled = true;
+            setChanged();
+            notifyObservers();
             profilesManager.increaseGames();
             return;
         }
@@ -170,6 +170,8 @@ public class PointManager extends Observable {
 
         if (winners.size() > 0) {
             alreadyControlled = true;
+            setChanged();
+            notifyObservers();
             profilesManager.increaseGames();
             return;
         }
@@ -178,10 +180,14 @@ public class PointManager extends Observable {
 
         if (winners.size() > 0) {
             alreadyControlled = true;
+            setChanged();
+            notifyObservers();
             profilesManager.increaseGames();
             return;
         }
         checkGreater();
+        setChanged();
+        notifyObservers();
         profilesManager.increaseGames();
         alreadyControlled = true;
     }
@@ -221,8 +227,6 @@ public class PointManager extends Observable {
             winners.remove(EntityNames.DEALER);
         }
         checkIfPlayerWins();
-        setChanged();
-        notifyObservers();
     }
 
     /**
@@ -245,8 +249,6 @@ public class PointManager extends Observable {
             }
         }
         checkIfPlayerWins();
-        setChanged();
-        notifyObservers();
     }
 
     /**
@@ -263,9 +265,15 @@ public class PointManager extends Observable {
      */
     public void checkIfPlayerWins(){
         if (winners.contains(EntityNames.PLAYER)) {
-            playerWins = true;
             profilesManager.increaseWins();
         }
+    }
+
+    public boolean didPlayerWin(){
+        if (winners.contains(EntityNames.PLAYER)) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -275,14 +283,5 @@ public class PointManager extends Observable {
      */
     public boolean isDealerOver() {
         return dealerOver;
-    }
-
-    /**
-     * Returns whether the player is among the winners.
-     *
-     * @return true if the player is among the winners, false otherwise
-     */
-    public boolean isPlayerWins() {
-        return playerWins;
     }
 }

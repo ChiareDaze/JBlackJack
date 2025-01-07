@@ -18,6 +18,7 @@ public class MusicManager implements Observer {
     private Clip menuSong;
     private Clip winningSong;
     private Clip losingSong;
+    private boolean endSoundPlayed = false;
 
     /**
      * Private constructor to prevent instantiation from outside the class.
@@ -175,8 +176,14 @@ public class MusicManager implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
+        if (endSoundPlayed) {
+            return;
+        }
+
+        endSoundPlayed = true;
+
         PointManager pointManager = (PointManager) o;
-        if (pointManager.isPlayerWins())
+        if (pointManager.didPlayerWin())
             winningSong();
         else
             losingSong();
