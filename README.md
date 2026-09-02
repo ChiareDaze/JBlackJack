@@ -10,7 +10,7 @@ A Java implementation of the classic Blackjack (21) game, developed to demonstra
 
 ## 🛠️ Tech Stack & Concepts
 - **Language**: Java (JDK 8 or higher)
-- **OOP Principles**: Encapsulation, separation of concerns, modular class design and design patterns (`Card`, `Deck`, `Hand`, `Player`, `Bot`, `Game`).
+- **OOP Principles**: Encapsulation, separation of concerns, design patterns and  modular class design (`Card`, `Deck`, `Hand`, `Player`, `Bot`, `Game`)
 
 ## 📦 Getting Started
 
