@@ -22,8 +22,7 @@ Ensure you have the [Java Development Kit (JDK)](https://www.oracle.com/java/tec
 1. **Clone the repository**:
    
    ```bash
-   git clone [[https://github.com/your-username/blackjack-java.git](https://github.com/your-username/blackjack-java.git)
-   cd blackjack-java](https://github.com/ChiareDaze/JBlackJack.git)]
+   git clone https://github.com/ChiareDaze/JBlackJack.git
    ```
 
 2. Open & Run:
