@@ -5,7 +5,7 @@ A Java implementation of the classic Blackjack (21) game, developed to demonstra
 ## 🚀 Features
 - **Complete Game Logic**: Full 52-card deck management with dynamic score calculation (including flexible Ace valuation: 1 or 11)
 - **Automated Dealer**: Basic AI dealer following standard rules (hits until reaching at least 17)
-- **Autonomous AI Bots**: Support for adding up to 3 autonomous bots to play concurrently alongside the player
+- **Automated Bots**: Support for adding up to 3 autonomous bots to play concurrently alongside the player
 - **Match Engine**: Immediate evaluation of wins, losses, ties (pushes), and busts
 
 ## 🛠️ Tech Stack & Concepts
