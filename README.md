@@ -33,7 +33,7 @@ Ensure you have the [Java Development Kit (JDK)](https://www.oracle.com/java/tec
 
 ## 🎮 Game Rules
 
-*Objective*: Get a hand total as close to 21 as possible without exceeding it, while beating the dealer's score.
+**Objective**: Get a hand total as close to 21 as possible without exceeding it, while beating the dealer's score.
 
 ### Card Values:
 - 2 to 10: Face value
