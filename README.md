@@ -20,10 +20,16 @@ Ensure you have the [Java Development Kit (JDK)](https://www.oracle.com/java/tec
 ### Installation & Execution
 
 1. **Clone the repository**:
+   
    ```bash
    git clone [[https://github.com/your-username/blackjack-java.git](https://github.com/your-username/blackjack-java.git)
    cd blackjack-java](https://github.com/ChiareDaze/JBlackJack.git)]
    ```
+
+2. Open & Run:
+   - Open the cloned project in your Java IDE
+   - Navigate to `JBlackJack/src/controller/Main.java`
+   - Run the `Main.java` file directly through your IDE's run button (or right-click > Run 'Main')
 
 ## 🎮 Game Rules
 
